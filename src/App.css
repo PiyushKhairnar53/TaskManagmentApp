@@ -116,10 +116,32 @@
   margin-left: -40px;
 }
 
+.check-logo{
+  color: rgb(7, 71, 166);
+  height: 175px;
+  width: 175px;
+}
+
+.check-logo-navbar{
+  margin-top: -2%;
+  color: white;
+}
+
+.check-logo-sidebar{
+  margin-top: -2%;
+  color: rgb(7, 71, 166);
+}
+
 .navbar {
   justify-content: center;
   background-color: rgb(7, 71, 166);
   color: white;
+}
+
+.landing-image{
+  padding-top: 3%;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .navbar-logged-in {

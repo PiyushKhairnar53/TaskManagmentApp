@@ -20,7 +20,7 @@ const MainContent = () => {
     // if (loggedInUser === "authenticated") {
     //   setAuthenticated(loggedInUser);
     // }
-     setAuthenticated("");
+    setAuthenticated("");
 
   }, []);
     

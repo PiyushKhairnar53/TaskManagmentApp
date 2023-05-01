@@ -2,18 +2,34 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
+import RegisterUser from "../RoutePages/Authentication/RegisterUser";
+import { FaCheckCircle } from "react-icons/fa";
 
 const Navbar = () => {
+
+  const [show, setShow] = useState(false);
+
+    const handleClose = () => {
+      setShow(false);
+      setNewStep(1);
+    }
+    const handleShow = () => setShow(true);  
+
+    const [step, setNewStep] = useState(1);
 
   return (
     <React.Fragment>
       <nav className="navbar">
-        <h4 className="navbar-title">Task Manager</h4>
+        <h4 className="navbar-title text-white"><FaCheckCircle className="check-logo-navbar"/> Task Manager</h4>
         <div>
           <Button variant="transparent" className="btn text-white pr-2">Login</Button>
-          <Button variant="transparent" className="btn text-white pr-2">Register</Button>
+          <Button variant="transparent" className="btn text-white pr-2" onClick={handleShow}>Register</Button>
         </div>
       </nav>
+      <Modal show={show} onHide={handleClose}>
+        <RegisterUser />
+      </Modal>
     </React.Fragment>
   );
 };

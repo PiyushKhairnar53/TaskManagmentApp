@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Dashboard from "../RoutePages/Dashboard";
-import AddTask from "../RoutePages/AddTask";
+import AddTask from "../RoutePages/Task/AddTask";
 
 const Navpages = () => {
 
