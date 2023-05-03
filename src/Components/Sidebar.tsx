@@ -1,35 +1,80 @@
 import React from 'react'
 import { NavLink } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
-import { FaArrowAltCircleDown, FaArrowCircleDown, FaCheckCircle } from 'react-icons/fa';
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js"
-import { Button } from 'react-bootstrap';
 
 
 const Sidebar = () => {
     return (
-
-        <div className="sidebar primary-color">
-
+        <div className="sidebar bg-dark">
             <div key={0}>
-                <ul className='side-tab'>
-                    <li className='app-name'>
-                        <NavLink to={'/'} className="navlink">
-                            <h4 className="navbar-title"><FaCheckCircle className="check-logo-sidebar"/> Task Manager</h4>
+
+                <Dropdown className='m-2'>
+                    <Dropdown.Toggle className='toggle-button bg-dark border-0 w-100' id="dropdown-basic">
+                        <strong>Attorney</strong>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                        <NavLink to={{ pathname: '/Attorney/LastWeekBillingsByAttorney' }}
+                            className="text-white">
+                            <h6 className='sidebar-tab'>Last Weeks Billings</h6>
                         </NavLink>
-                    </li>
-                    <li>
-                        <Button className="btn btn-toggle collapsed mt-3" variant='dark' data-bs-toggle="collapse" data-bs-target="#profile-collapse" aria-expanded="false">
-                            <strong >Matters</strong> <FaArrowCircleDown />
-                        </Button>
-                        <div className="collapse bg-white mt-1" id="profile-collapse">
-                            <ul className="btn-toggle-nav p-2 list-unstyled">
-                                <li><NavLink to="RoutePages/AddTask" className="bg-white text-decoration-none rounded text-dark">Create new Matter</NavLink></li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
+
+                        <NavLink to={'/Attorney/LastWeekBillings'}
+                            className="text-white">
+                            <h6 className='sidebar-tab'>Last Weeks Billing For Attorney</h6>
+                        </NavLink>
+                    </Dropdown.Menu>
+                </Dropdown>
+            </div>
+
+            <hr />
+
+            <div key={1}>
+                <Dropdown className='m-2'>
+                    <Dropdown.Toggle className='toggle-button bg-dark border-0 w-100' id="dropdown-basic">
+                        <strong>Matter</strong>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                        <NavLink to={{ pathname: '/Matter/AddMatter' }}
+                            className="text-white">
+                            <h6 className='sidebar-tab'>Add Matter</h6>
+                        </NavLink>
+
+                        <NavLink to={'/Matter/ListMattersForClient'}
+                            className="text-white">
+                            <h6 className='sidebar-tab'>Show Matters for client</h6>
+                        </NavLink>
+
+                        <NavLink to={'/Matter/ListMatterByClient'}
+                            className="text-white">
+                            <h6 className='sidebar-tab'>Show Matters By client</h6>
+                        </NavLink>
+                    </Dropdown.Menu>
+                </Dropdown>
+            </div>
+
+            <hr />
+
+            <div key={2}>
+                <Dropdown className='m-2'>
+                    <Dropdown.Toggle className='toggle-button bg-dark border-0 w-100' id="dropdown-basic">
+                        <strong>Invoices</strong>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                        <NavLink to={{ pathname: '/Invoices/ListInvoicesForMatter' }}
+                            className="text-white">
+                            <h6 className='sidebar-tab'>List Invoices For Matter</h6>
+                        </NavLink>
+
+                        <NavLink to={{ pathname: '/Invoices/ListInvoicesByMatter' }}
+                            className="text-white">
+                            <h6 className='sidebar-tab'>List Invoices By Matter</h6>
+                        </NavLink>
+                    </Dropdown.Menu>
+                </Dropdown>
             </div>
         </div>
     )

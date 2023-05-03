@@ -53,8 +53,17 @@
   display: block;
 }
 
+.add-task-button{
+  margin-top: 1%;
+  margin-right: 3%;
+}
+
+.manager-dashboard{
+  margin-top: 1%;
+  margin-left: 3%;
+}
+
 .sidebar{
- 
   width: 15%;
   color: white;
   position: fixed;
@@ -147,6 +156,10 @@
 .navbar-logged-in {
   justify-content: end;
   margin-left: -2%;
+}
+
+.task-list-bg{
+  background-color: hsl(0, 0%, 96%);
 }
 
 .route-page-bg{

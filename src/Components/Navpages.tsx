@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Dashboard from "../RoutePages/Dashboard";
+import "bootstrap/dist/css/bootstrap.min.css";
 import AddTask from "../RoutePages/Task/AddTask";
 
 const Navpages = () => {
@@ -11,7 +12,7 @@ const Navpages = () => {
                 <section >
                     <Routes>
                         <Route path="/" element={<Dashboard />} />
-                        <Route path="/RoutePages/AddTask" element={<AddTask />} />
+                        <Route path="task/addTask" element={<AddTask/>}/>
                     </Routes>
                 </section>
             </React.Fragment>

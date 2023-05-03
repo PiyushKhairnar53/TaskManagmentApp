@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import '../App.css'
 import '../index.css'
@@ -15,15 +16,19 @@ const API_URL = "https://localhost:44316/api/Authentication/";
 
 const LandingPage = () => {
 
+    const navigate = useNavigate();
     const [show, setShow] = useState(false);
 
     const handleClose = () => {
       setShow(false);
-      setNewStep(1);
     }
-    const handleShow = () => setShow(true);  
 
-    const [step, setNewStep] = useState(1);
+    const closeModal = (showValue : boolean) =>
+    {
+        setShow(showValue);
+    }
+
+    const handleShow = () => setShow(true);  
  
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -35,12 +40,27 @@ const LandingPage = () => {
                 password
             })
                 .then(response => {
+
                     if (response.data.token) {
-                        localStorage.setItem("user", JSON.stringify(response.data));
-                        console.log("login : " + response.data.token);
-                        console.log("local storage - " + localStorage.getItem("user"));
-                        const user = JSON.parse(localStorage.getItem("user") || '{}');
-                        console.log("role - " + user.role);
+
+                        console.log("Token : " + response.data.token);
+                        console.log("Role: " + response.data.role);
+                        console.log("User Id: " + response.data.userId);
+    
+                        localStorage.setItem("User", JSON.stringify(response.data));
+                        console.log("Local Storage: " + localStorage.getItem("User"));
+                        const user = JSON.parse(localStorage.getItem("User") || '{}');
+    
+                        if(user.role === "Manager")
+                        {
+                            console.log("Role: " + user.role);
+                            navigate("manager/dashboard");
+                        }
+                        else if(user.role === "Developer")
+                        {
+                            console.log("Role: " + user.role);
+                            navigate("developer/home");
+                        }
                     }
                 });
         }
@@ -110,11 +130,8 @@ const LandingPage = () => {
                     </div>
                 </div>
                 <Modal show={show} onHide={handleClose}>
-                    <RegisterUser />
+                    <RegisterUser ShowModal={closeModal}/>
                 </Modal>
-                {/* <div>
-                    <Footer />
-                </div> */}
             </React.Fragment>
         </div>
     );

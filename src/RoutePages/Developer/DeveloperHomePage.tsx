@@ -1,16 +1,16 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import Navbar from "../Components/Navbar";
-import Navpages from "../Components/Navpages";
-import Sidebar from "../Components/Sidebar";
-import '../App.css'
-import '../index.css'
+import Navbar from "../../Components/Navbar";
+import Navpages from "../../Components/Navpages";
+import Sidebar from "../../Components/Sidebar";
+import '../../App.css';
+import '../../index.css'
 import { Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Footer from "../Components/Footer";
-import NavbarLoggedIn from "../Components/NavbarLoggedIn";
+import Footer from "../../Components/Footer";
+import NavbarLoggedIn from "../../Components/NavbarLoggedIn";
 
-const LoggedInPage = () => {
+const DeveloperHomePage = () => {
 
     const user = JSON.parse(localStorage.getItem("user") || '{}');
     console.log("Role of user - "+user.role);
@@ -38,4 +38,4 @@ const LoggedInPage = () => {
     );
 };
 
-export default LoggedInPage;
+export default DeveloperHomePage;
