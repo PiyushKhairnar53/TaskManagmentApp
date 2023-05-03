@@ -65,7 +65,7 @@ const AddTask: React.FC = () => {
     return (
         <div className="shadow container bg-grey">
             <div className="text-center mt-2">
-                <h4>Add Task</h4>
+                <h4>Task</h4>
             </div>
             <Form>
                 <Form.Group className="p-3" controlId="exampleForm.ControlInput1">
@@ -74,14 +74,14 @@ const AddTask: React.FC = () => {
                     {task.title == "" ? <p className="text-danger font-weight-bold">Please enter Title</p> : null}
                 </Form.Group>
 
-                <Form.Group className="p-3"
+                <Form.Group
                     controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Description</Form.Label>
                     <Form.Control as="textarea" rows={3} name="description" onChange={(e) => handleChange(e.target)} required />
                     {task.description == "" ? <p className="text-danger font-weight-bold">Please enter Description</p> : null}
                 </Form.Group>
 
-                <Form.Group className="p-3" controlId="exampleForm.ControlInput1">
+                <Form.Group controlId="exampleForm.ControlInput1">
                     <div className='d-flex justify-content-between'>
                         <div className='p-1 w-50'>
                             <Form.Label>Select Priority</Form.Label>
@@ -100,7 +100,7 @@ const AddTask: React.FC = () => {
                     </div>
                 </Form.Group>
 
-                <Form.Group className="p-3"
+                <Form.Group className='mt-3'
                     controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Assign Developer <FaQuestionCircle /> </Form.Label>
                     <Form.Select aria-label="Developer" name="developerId"

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext } from "react";
 import '../../index.css'
 import { useState, useEffect } from 'react';
 import '../../App.css'
@@ -15,6 +15,7 @@ interface IStatusManager {
     statusId: number
 }
 
+export const AppContext = createContext<any>({});
 const ManagerDashboard = () => {
 
     const user = JSON.parse(localStorage.getItem("User") || '{}');
@@ -69,6 +70,7 @@ const ManagerDashboard = () => {
     }, []);
 
     return (
+        <AppContext.Provider value={{getData}}>
         <div className="route-page-bg">
             <div className="row">
                 <div className="d-flex justify-content-between">
@@ -84,8 +86,8 @@ const ManagerDashboard = () => {
                             {todoTasks.map((element: TaskByStatus, index) => {
                                 return (
                                     // <div className="col-md-8" key={index}>
-                                    <TaskItem title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} managerId={element.managerId}
-                                        developerFirstName={element.developerFirstName} developerLastName={element.developerLastName} createdAt={element.createdAt} />
+                                    <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} managerId={element.managerId}
+                                        developerFirstName={element.developerFirstName} developerLastName={element.developerLastName} createdAt={element.createdAt} statusId={1} />
                                     // </div>
                                 );
                             })}
@@ -95,9 +97,9 @@ const ManagerDashboard = () => {
                             {inProgress.map((element: TaskByStatus, index) => {
                                 return (
                                     // <div className="col-md-8" key={index}>
-                                    <TaskItem title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} managerId={element.managerId}
-                                        developerFirstName={element.developerFirstName} developerLastName={element.developerLastName} createdAt={element.createdAt} />
-                                    // </div>
+                                    <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} managerId={element.managerId}
+                                        developerFirstName={element.developerFirstName} developerLastName={element.developerLastName} createdAt={element.createdAt} statusId={2} />
+                                     // </div>
                                 );
                             })}
                         </div>
@@ -106,9 +108,9 @@ const ManagerDashboard = () => {
                             {codeReview.map((element: TaskByStatus, index) => {
                                 return (
                                     // <div className="col-md-8" key={index}>
-                                    <TaskItem title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} managerId={element.managerId}
-                                        developerFirstName={element.developerFirstName} developerLastName={element.developerLastName} createdAt={element.createdAt} />
-                                    // </div>
+                                    <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} managerId={element.managerId}
+                                    developerFirstName={element.developerFirstName} developerLastName={element.developerLastName} createdAt={element.createdAt} statusId={3}/>
+                               // </div>
                                 );
                             })}
                         </div>
@@ -117,9 +119,9 @@ const ManagerDashboard = () => {
                             {completed.map((element: TaskByStatus, index) => {
                                 return (
                                     // <div className="col-md-8" key={index}>
-                                    <TaskItem title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} managerId={element.managerId}
-                                        developerFirstName={element.developerFirstName} developerLastName={element.developerLastName} createdAt={element.createdAt} />
-                                    // </div>
+                                    <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} managerId={element.managerId}
+                                    developerFirstName={element.developerFirstName} developerLastName={element.developerLastName} createdAt={element.createdAt} statusId={4} />
+                               // </div>
                                 );
                             })}
                         </div>
@@ -128,6 +130,7 @@ const ManagerDashboard = () => {
 
             </div>
         </div>
+        </AppContext.Provider>
     );
 }
 

@@ -3,7 +3,7 @@ import { Modal } from "react-bootstrap";
 import { useState } from 'react';
 import ChangeStatusModal from "../Status/ChangeStatusModal";
 
-const TaskItem = (props: any) => {
+const DeveloperItem = (props: any) => {
     let {taskId, title, priority, estimatedTime, managerId, developerFirstName, developerLastName, createdAt,statusId } = props;
     const dateOfCreation = new Date(createdAt).toDateString();
 
@@ -59,4 +59,4 @@ const TaskItem = (props: any) => {
     );
 };
 
-export default TaskItem;
+export default DeveloperItem;

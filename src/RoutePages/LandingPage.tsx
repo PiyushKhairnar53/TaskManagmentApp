@@ -87,10 +87,11 @@ const LandingPage = () => {
                                                 <p>Manage your tasks easily By using our solution <strong>Task Manager</strong></p>
                                             </div>
                                             <div className="row landing-image">
-                                                <img className="image" src="https://i.imgur.com/uNGdWHi.png" />
+                                                <img className="image" src="https://www.shutterstock.com/image-vector/two-developers-planning-their-work-600w-421328629.jpg" />
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <div className="col-lg-6">
                                         <div className="card2 card border-0 px-4 py-5">
                                             <div className="row pt-3">
