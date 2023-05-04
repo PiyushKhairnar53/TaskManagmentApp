@@ -68,8 +68,9 @@ const UpdateTaskDeveloper: React.FC = () => {
             <div className="text-center mt-2">
                 <h4>Task</h4>
             </div>
-            <div className='text-end m-2'>
-                <label>Estimated time - {location.state.taskEstimatedTime} hrs</label>
+            <div className='d-flex justify-content-between p-3'>
+                <label>Manager : {location.state.taskFirstName} {location.state.taskLastName}</label>
+                <label>Estimated time : {location.state.taskEstimatedTime} hrs</label>
             </div>
             <Form>
                 <Form.Group className="p-3" controlId="exampleForm.ControlInput1">
@@ -89,7 +90,7 @@ const UpdateTaskDeveloper: React.FC = () => {
                     <div className='d-flex justify-content-between'>
                         <div className='p-1 w-50'>
 
-                            <Form.Group className='p-3'
+                            <Form.Group
                                 controlId="exampleForm.ControlTextarea1">
                                 <h6 className='d-flex justify-content-start form-label'>Select Priority</h6>
                                 <Form.Select aria-label="Matter priority" defaultValue={priority} name="priority" onChange={(e) => setPriority(e.target.value)}>
@@ -103,7 +104,7 @@ const UpdateTaskDeveloper: React.FC = () => {
                         </div>
                         <div className='p-1 w-50'>
 
-                            <Form.Group className='p-3'
+                            <Form.Group
                                 controlId="exampleForm.ControlTextarea1">
                                 <h6 className='d-flex justify-content-start form-label'>Enter Actual Time</h6>
                                 <Form.Control type="number" placeholder='in hours' name="actualTime" value={actualTime} onChange={(e) => setActualTime(e.target.value)} required />

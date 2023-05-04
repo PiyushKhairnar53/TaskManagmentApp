@@ -11,6 +11,8 @@ import UpdateTaskDeveloper from "./UpdateTaskDeveloper";
 import SidebarManager from "../../Components/SidebarManager";
 import DeveloperDashboard from "./DeveloperDashboard";
 import SidebarDeveloper from "../../Components/SidebarDeveloper";
+import ViewAllDevelopers from "./ViewAllDevelopers";
+import ViewAllManagers from "../Manager/ViewAllManagers";
 
 const DeveloperHomePage = () => {
 
@@ -31,6 +33,8 @@ const DeveloperHomePage = () => {
                         <Routes>
                             <Route path="dashboard" element={<DeveloperDashboard />} />
                             <Route path="task/updateTask" element={<UpdateTaskDeveloper />} />
+                            <Route path="/viewAllManagers" element={<ViewAllManagers />} />
+                            <Route path="/viewAllDevelopers" element={<ViewAllDevelopers />} />
                         </Routes>
                         </Col>
                     </Row>

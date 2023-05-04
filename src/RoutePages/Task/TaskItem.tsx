@@ -48,6 +48,8 @@ const TaskItem = (props: any) => {
                         taskTitle: title,
                         taskDescription: description,
                         taskPriority: priority,
+                        taskFirstName:firstName,
+                        taskLastName:lastName,
                         taskEstimatedTime: estimatedTime,
                         taskDeveloperId: developerId,
                         taskActualTime: actualTime,

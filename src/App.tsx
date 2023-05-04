@@ -9,8 +9,10 @@ import ManagerHomePage from './RoutePages/Manager/ManagerHomePage';
 import DeveloperHomePage from './RoutePages/Developer/DeveloperHomePage';
 import { useState } from 'react';
 import { Route,Routes } from 'react-router-dom';
+import Protected from './Components/Protected';
 
 function App() {
+
 
   const props:any = false;
   const [loading, setLoading] = useState(true);
@@ -57,8 +59,8 @@ function App() {
         <BrowserRouter>
         <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="manager/*" element ={<ManagerHomePage/>}/>
-        <Route path="developer/*" element ={<DeveloperHomePage/>}/>
+        <Route path='manager/*' element={ <Protected> <ManagerHomePage /></Protected>} />
+        <Route path="developer/*" element ={<Protected> <DeveloperHomePage/></Protected>}/>
        </Routes>
         </BrowserRouter>
       </React.Fragment>

@@ -147,6 +147,11 @@
   color: white;
 }
 
+.profile-icon{
+  height: 80px;
+  width: 80px;
+}
+
 .landing-image{
   padding-top: 3%;
   padding-left: 10%;
@@ -154,8 +159,10 @@
 }
 
 .navbar-logged-in {
-  justify-content: end;
+  padding-top: 1%;
+  padding-bottom: 0.25%;
   margin-left: -2%;
+  border-bottom: 1px solid #f2f2f2;
 }
 
 .task-list-bg{
@@ -311,6 +318,23 @@ body {
   height: 35px;
   cursor: pointer;
 }
+
+.all-profiles{
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
+
+.container-profiles {
+  max-width: 800px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+}
+
 
 .twitter {
   background-color: #1DA1F2;

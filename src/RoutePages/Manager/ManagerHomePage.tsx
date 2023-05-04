@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import '../../App.css';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import '../../index.css';
 import { Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,10 +10,13 @@ import NavbarLoggedIn from "../../Components/NavbarLoggedIn";
 import AddTask from "../Task/AddTask";
 import SidebarManager from "../../Components/SidebarManager";
 import ManagerDashboard from "./ManagerDashboard";
+import ViewAllDevelopers from "../Developer/ViewAllDevelopers";
 
 const ManagerHomePage = () => {
 
-    const user = JSON.parse(localStorage.getItem("user") || '{}');
+    const user = JSON.parse(localStorage.getItem("User") || '{}');
+
+    console.log("Manager home - " + user.token + " " +user.role);
  
     return (
         <>
@@ -27,6 +30,7 @@ const ManagerHomePage = () => {
                         <Routes>
                             <Route path="dashboard" element={<ManagerDashboard />} />
                             <Route path="task/addTask" element={<AddTask />} />
+                            <Route path="/viewAllDevelopers" element={<ViewAllDevelopers />} />
                         </Routes>
                         </Col>
                     </Row>

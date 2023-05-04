@@ -32,7 +32,7 @@ const SidebarManager = () => {
                     <hr />
                     <li>
                         <FaUserFriends/>
-                        <Button variant='transparent' className="sidebar-items text-white">
+                        <Button variant='transparent' className="sidebar-items text-white"  onClick={() => navigate("../manager/viewAllDevelopers")}>
                         <strong>Developers</strong></Button>
                     </li>                  
                 </ul>

@@ -27,8 +27,7 @@ const Navbar = () => {
     <React.Fragment>
       <nav className="navbar">
         <h4 className="navbar-title text-white"><FaCheckCircle className="check-logo-navbar" /> Task Manager</h4>
-        <div>
-          <Button variant="transparent" className="btn text-white pr-2">Login</Button>
+        <div className="m-2">
           <Button variant="transparent" className="btn text-white pr-2" onClick={handleShow}>Register</Button>
         </div>
       </nav>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
-import { FaArrowAltCircleDown, FaArrowCircleDown, FaCheckCircle } from 'react-icons/fa';
+import { FaCheckCircle } from 'react-icons/fa';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js"
 import { Button } from 'react-bootstrap';
@@ -32,13 +32,13 @@ const SidebarDeveloper = () => {
                     <hr />
                     <li>
                         <FaUserFriends/>
-                        <Button variant='transparent' className="sidebar-items text-white">
+                        <Button variant='transparent' className="sidebar-items text-white" onClick={() => navigate("../developer/viewAllManagers")}>
                         <strong>Managers</strong></Button>
                     </li>  
                     <hr/>
                     <li>
                         <FaUserFriends/>
-                        <Button variant='transparent' className="sidebar-items text-white">
+                        <Button variant='transparent' className="sidebar-items text-white" onClick={() => navigate("../developer/viewAllDevelopers")}>
                         <strong>Developers</strong></Button>
                     </li>                  
                 </ul>

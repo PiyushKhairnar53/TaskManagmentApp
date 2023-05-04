@@ -1,22 +1,32 @@
 import React from "react";
 import dotnet from "./dotnet.png"
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import { NavLink, useNavigate } from "react-router-dom";
 
 const NavbarLoggedIn = () => {
+
+  const navigate = useNavigate();
+
+  const logoutUser = () =>{
+      localStorage.removeItem("User");
+      navigate("/");
+      window.location.reload();
+  }
+
   return (
     <React.Fragment>
-    <nav className="navbar navbar-logged-in bg-white">
-      <div className="dropdown text-end profile-img">
-        <a href="#" className="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
-          data-bs-toggle="dropdown" aria-expanded="true">User
-        </a>
-
-        <ul className="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-          <li><a className="dropdown-item" href="#">User name</a></li>
-          <li><hr className="dropdown-divider"></hr></li>
-          <li><a className="dropdown-item" href="#">Sign out</a></li>
-        </ul>
+    <nav className="navbar-logged-in bg-white">
+      <div className="d-flex justify-content-end profile-img">
+      <div className="dropdown col-md-2 text-end">
+          <a href="#" className="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" className="rounded-circle" />
+          </a>
+          <ul className="dropdown-menu text-small">
+            <li><NavLink to={"/profile"} className="dropdown-item">Profile</NavLink></li>
+            <li><hr className="dropdown-divider" /></li>
+            <li><a className="dropdown-item" onClick={logoutUser} >Sign out</a></li>
+          </ul>
+        </div>
       </div>
     </nav>
   </React.Fragment>
