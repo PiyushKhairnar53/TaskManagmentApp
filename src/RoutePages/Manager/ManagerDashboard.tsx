@@ -11,20 +11,21 @@ import { TaskByStatus } from "../Task/TaskByStatus";
 import TaskItem from "../Task/TaskItem";
 
 interface IStatusManager {
-    managerId: string,
+    userId: string,
     statusId: number
 }
 
-export const AppContext = createContext<any>({});
+const APIBASEURL = 'https://localhost:44316/api/Task/GetTasksByStatus';
+
 const ManagerDashboard = () => {
 
     const user = JSON.parse(localStorage.getItem("User") || '{}');
     const userId = user.userId;
 
-    const statusTodo: IStatusManager = { managerId: userId, statusId: 1 }
-    const statusInProgress: IStatusManager = { managerId: userId, statusId: 2 }
-    const statusCodeReview: IStatusManager = { managerId: userId, statusId: 3 }
-    const statusCompleted: IStatusManager = { managerId: userId, statusId: 4 }
+    const statusTodo: IStatusManager = { userId: userId, statusId: 1 }
+    const statusInProgress: IStatusManager = { userId: userId, statusId: 2 }
+    const statusCodeReview: IStatusManager = { userId: userId, statusId: 3 }
+    const statusCompleted: IStatusManager = { userId: userId, statusId: 4 }
 
 
     const navigate = useNavigate();
@@ -41,25 +42,25 @@ const ManagerDashboard = () => {
 
 
     const getData = () => {
-        axios.post('https://localhost:44316/api/Task/GetTasksByStatus', statusTodo)
+        axios.post(APIBASEURL, statusTodo)
             .then(res => {
                 setTodoTasks(res.data.data);
             })
             .catch(err => console.log(err))
 
-        axios.post('https://localhost:44316/api/Task/GetTasksByStatus', statusInProgress)
+        axios.post(APIBASEURL, statusInProgress)
             .then(res => {
                 setInProgress(res.data.data);
             })
             .catch(err => console.log(err))
 
-        axios.post('https://localhost:44316/api/Task/GetTasksByStatus', statusCodeReview)
+        axios.post(APIBASEURL, statusCodeReview)
             .then(res => {
                 setCodeReview(res.data.data);
             })
             .catch(err => console.log(err))
 
-        axios.post('https://localhost:44316/api/Task/GetTasksByStatus', statusCompleted)
+        axios.post(APIBASEURL, statusCompleted)
             .then(res => {
                 setCompleted(res.data.data);
             })
@@ -71,7 +72,6 @@ const ManagerDashboard = () => {
     }, []);
 
     return (
-        <AppContext.Provider value={{ getData }}>
             <div className="route-page-bg">
                 <div className="row">
                     <div className="d-flex justify-content-between">
@@ -86,11 +86,9 @@ const ManagerDashboard = () => {
                                 <h4>To do</h4>
                                 {todoTasks.map((element: TaskByStatus, index) => {
                                     return (
-                                        // <div className="col-md-8" key={index}>
                                         <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                            managerId={element.managerId} developerFirstName={element.developerFirstName} developerLastName={element.developerLastName}
-                                            createdAt={element.createdAt} statusId={1} developerId={element.developerId} actualTime={element.actualTime} />
-                                        // </div>
+                                            managerId={element.managerId} firstName={element.developerFirstName} lastName={element.developerLastName}
+                                            createdAt={element.createdAt} statusId={1} developerId={element.developerId} actualTime={element.actualTime} refresh={getData} />
                                     );
                                 })}
                             </div>
@@ -98,11 +96,9 @@ const ManagerDashboard = () => {
                                 <h4>In progress</h4>
                                 {inProgress.map((element: TaskByStatus, index) => {
                                     return (
-                                        // <div className="col-md-8" key={index}>
                                         <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                            managerId={element.managerId} developerFirstName={element.developerFirstName} developerLastName={element.developerLastName}
-                                            createdAt={element.createdAt} statusId={1} developerId={element.developerId} actualTime={element.actualTime} />
-                                        // </div>
+                                            managerId={element.managerId} firstName={element.developerFirstName} lastName={element.developerLastName}
+                                            createdAt={element.createdAt} statusId={2} developerId={element.developerId} actualTime={element.actualTime} refresh={getData} />
                                     );
                                 })}
                             </div>
@@ -110,11 +106,9 @@ const ManagerDashboard = () => {
                                 <h4>Code review</h4>
                                 {codeReview.map((element: TaskByStatus, index) => {
                                     return (
-                                        // <div className="col-md-8" key={index}>
                                         <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                            managerId={element.managerId} developerFirstName={element.developerFirstName} developerLastName={element.developerLastName}
-                                            createdAt={element.createdAt} statusId={1} developerId={element.developerId} actualTime={element.actualTime} />
-                                        // </div>
+                                            managerId={element.managerId} firstName={element.developerFirstName} lastName={element.developerLastName}
+                                            createdAt={element.createdAt} statusId={3} developerId={element.developerId} actualTime={element.actualTime} refresh={getData} />
                                     );
                                 })}
                             </div>
@@ -122,11 +116,9 @@ const ManagerDashboard = () => {
                                 <h4>Completed</h4>
                                 {completed.map((element: TaskByStatus, index) => {
                                     return (
-                                        // <div className="col-md-8" key={index}>
                                         <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                            managerId={element.managerId} developerFirstName={element.developerFirstName} developerLastName={element.developerLastName}
-                                            createdAt={element.createdAt} statusId={1} developerId={element.developerId} actualTime={element.actualTime} />
-                                        // </div>
+                                            managerId={element.managerId} firstName={element.developerFirstName} lastName={element.developerLastName}
+                                            createdAt={element.createdAt} statusId={4} developerId={element.developerId} actualTime={element.actualTime} refresh={getData} />
                                     );
                                 })}
                             </div>
@@ -135,7 +127,6 @@ const ManagerDashboard = () => {
 
                 </div>
             </div>
-        </AppContext.Provider>
     );
 }
 

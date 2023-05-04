@@ -16,6 +16,11 @@ const API_URL = "https://localhost:44316/api/Authentication/";
 
 const LandingPage = () => {
 
+    // localStorage.removeItem("User");
+
+    const user = JSON.parse(localStorage.getItem("User") || '{}');
+    console.log("user role"+user.role);
+
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
 

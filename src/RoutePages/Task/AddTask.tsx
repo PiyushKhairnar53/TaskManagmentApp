@@ -100,8 +100,8 @@ const AddTask: React.FC = () => {
             if (buttonName == 'Update') {
 
                 const updateTask: TaskUpdate = {
-                    taskId:taskId,
-                    userId:managerId,
+                    taskId: taskId,
+                    userId: managerId,
                     title: title,
                     description: description,
                     priority: priority,
@@ -158,17 +158,24 @@ const AddTask: React.FC = () => {
                     {description == "" ? <p className="text-danger font-weight-bold">Please enter Description</p> : null}
                 </Form.Group>
 
+                {(user.role == "Manager") && (
+                    <>
                 <Form.Group className='p-3' controlId="exampleForm.ControlInput1">
                     <div className='d-flex justify-content-between'>
                         <div className='p-1 w-50'>
-                            <h6 className='d-flex justify-content-start form-label'>Select Priority</h6>
-                            <Form.Select aria-label="Matter priority" defaultValue={priority} name="priority" onChange={(e) => setPriority(e.target.value)}>
-                                <option value="" disabled>Select-Priority</option>
-                                <option value="High"><h5><FaArrowUp /> High</h5></option>
-                                <option value="Medium">Medium</option>
-                                <option value="Low">Low</option>
-                                {priority == '' ? <p className="text-danger font-weight-bold">Please Select Priority</p> : null}
+
+                            <h6 className='d-flex justify-content-start form-label'>Assign Developer <FaQuestionCircle /> </h6>
+                            <Form.Select aria-label="Select-Developer" name="developerId"
+                                defaultValue="Select-Developer" onChange={(e) => setDeveloperId(e.target.value)}>
+                                <option value="Select-Developer" disabled>Select-Developer</option>
+                                {developersData.map((item: Developer) => {
+                                    return (<option key={item.id} value={item.id} disabled={item.id == developerId} >
+                                        {item.firstName} {item.lastName}</option>);
+                                })}
                             </Form.Select>
+                            {developerId == "" ? <p className="text-danger font-weight-bold">Please Select Developer</p> : null}
+
+
                         </div>
                         <div className='p-1 w-50'>
                             <h6 className='d-flex justify-content-start form-label'>Enter Estimated Time</h6>
@@ -179,19 +186,18 @@ const AddTask: React.FC = () => {
                         </div>
                     </div>
                 </Form.Group>
+                </>)}
 
                 <Form.Group className='p-3'
                     controlId="exampleForm.ControlTextarea1">
-                    <h6 className='d-flex justify-content-start form-label'>Assign Developer <FaQuestionCircle /> </h6>
-                    <Form.Select aria-label="Select-Developer" name="developerId"
-                        defaultValue="Select-Developer" onChange={(e) => setDeveloperId(e.target.value)}>
-                        <option value="Select-Developer" disabled>Select-Developer</option>
-                        {developersData.map((item: Developer) => {
-                            return (<option key={item.id} value={item.id} disabled={item.id == developerId} >
-                                {item.firstName} {item.lastName}</option>);
-                        })}
+                    <h6 className='d-flex justify-content-start form-label'>Select Priority</h6>
+                    <Form.Select aria-label="Matter priority" defaultValue={priority} name="priority" onChange={(e) => setPriority(e.target.value)}>
+                        <option value="" disabled>Select-Priority</option>
+                        <option value="High"><h5><FaArrowUp /> High</h5></option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                        {priority == '' ? <p className="text-danger font-weight-bold">Please Select Priority</p> : null}
                     </Form.Select>
-                    {developerId == "" ? <p className="text-danger font-weight-bold">Please Select Developer</p> : null}
                 </Form.Group>
 
                 {(buttonName == "Update") && (

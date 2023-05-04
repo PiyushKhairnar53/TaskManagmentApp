@@ -14,10 +14,7 @@ import ManagerDashboard from "./ManagerDashboard";
 const ManagerHomePage = () => {
 
     const user = JSON.parse(localStorage.getItem("user") || '{}');
-    console.log("Role of user - " + user.role);
-    console.log("token - " + user.token);
-    console.log("userId - " + user.userId);
-
+ 
     return (
         <>
          <div className="route-page-bg">

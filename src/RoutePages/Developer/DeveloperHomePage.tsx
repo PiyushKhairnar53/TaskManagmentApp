@@ -7,14 +7,14 @@ import { Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "../../Components/Footer";
 import NavbarLoggedIn from "../../Components/NavbarLoggedIn";
-import AddTask from "../Task/AddTask";
+import UpdateTaskDeveloper from "./UpdateTaskDeveloper";
 import SidebarManager from "../../Components/SidebarManager";
 import DeveloperDashboard from "./DeveloperDashboard";
 import SidebarDeveloper from "../../Components/SidebarDeveloper";
 
-const ManagerHomePage = () => {
+const DeveloperHomePage = () => {
 
-    const user = JSON.parse(localStorage.getItem("user") || '{}');
+    const user = JSON.parse(localStorage.getItem("User") || '{}');
     console.log("Role of user - " + user.role);
     console.log("token - " + user.token);
     console.log("userId - " + user.userId);
@@ -30,6 +30,7 @@ const ManagerHomePage = () => {
                         <NavbarLoggedIn />
                         <Routes>
                             <Route path="dashboard" element={<DeveloperDashboard />} />
+                            <Route path="task/updateTask" element={<UpdateTaskDeveloper />} />
                         </Routes>
                         </Col>
                     </Row>
@@ -38,4 +39,4 @@ const ManagerHomePage = () => {
     )
 };
 
-export default ManagerHomePage;
+export default DeveloperHomePage;

@@ -3,7 +3,6 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import { FaQuestionCircle } from 'react-icons/fa';
 import { User } from '../User/User';
 import axios from 'axios';
-import { AppContext } from '../Manager/ManagerDashboard';
 import { title } from 'process';
 
 interface IModal {
@@ -22,16 +21,14 @@ interface Status{
 const ChangeStatusModal: React.FC<IModal> = ({ ShowModal, TaskId, Title, StatusId }) => {
 
     const user = JSON.parse(localStorage.getItem("User") || '{}');
-    const managerId = user.userId;
+    const userId = user.userId;
 
 
-    const [newStatus, setNewStatus] = useState<Status>({ taskId:TaskId,statusId:StatusId,userId:managerId});
+    const [newStatus, setNewStatus] = useState<Status>({ taskId:TaskId,statusId:StatusId,userId:userId});
 
     const handleChange = (e: any) => {
         setNewStatus({ ...newStatus, [e.name]: e.value });
     };
-
-    const {getData} =useContext(AppContext);
 
     const CloseModal = () =>{
         ShowModal(false);
@@ -45,7 +42,6 @@ const ChangeStatusModal: React.FC<IModal> = ({ ShowModal, TaskId, Title, StatusI
             .then((res) => {
                 console.log(res.data.data)
                 CloseModal();
-                getData();
             })
             .catch(function (error) {
                 console.log(error);

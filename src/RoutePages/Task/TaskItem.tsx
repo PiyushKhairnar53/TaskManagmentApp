@@ -5,37 +5,61 @@ import { useNavigate } from "react-router-dom";
 import ChangeStatusModal from "../Status/ChangeStatusModal";
 
 const TaskItem = (props: any) => {
-    let { taskId, title,description, priority, estimatedTime, managerId, developerFirstName, 
-            developerLastName, createdAt, statusId,developerId,actualTime } = props;
+    let { taskId, title, description, priority, estimatedTime, managerId, firstName,
+        lastName, createdAt, statusId, developerId, actualTime, refresh } = props;
     const dateOfCreation = new Date(createdAt).toDateString();
 
     const navigate = useNavigate();
+
+    const user = JSON.parse(localStorage.getItem("User") || '{}');
 
     const [show, setShow] = useState(false);
 
     const handleClose = () => {
         setShow(false);
+        refresh = true;
     }
 
     const handleUpdateTask = () => {
-        navigate("/manager/task/addTask");
 
-        navigate('/manager/task/addTask',
-      {
-        state: {
-          taskTaskId: taskId,
-          taskTitle: title,
-          taskDescription:description,
-          taskPriority: priority,
-          taskEstimatedTime: estimatedTime,
-          taskDeveloperId: developerId,
-          taskActualTime: actualTime
+        console.log('user role in taskitem -'+user.role);
+
+        if (user.role === 'Manager') {
+            navigate('/manager/task/addTask',
+                {
+                    state: {
+                        taskTaskId: taskId,
+                        taskTitle: title,
+                        taskDescription: description,
+                        taskPriority: priority,
+                        taskEstimatedTime: estimatedTime,
+                        taskDeveloperId: developerId,
+                        taskActualTime: actualTime,
+                        taskManagerId: managerId
+                    }
+                });
         }
-      });
+
+        if (user.role === 'Developer') {
+            navigate('/developer/task/updateTask',
+                {
+                    state: {
+                        taskTaskId: taskId,
+                        taskTitle: title,
+                        taskDescription: description,
+                        taskPriority: priority,
+                        taskEstimatedTime: estimatedTime,
+                        taskDeveloperId: developerId,
+                        taskActualTime: actualTime,
+                        taskManagerId: managerId
+                    }
+                });
+        }
     };
 
     const closeModal = (showValue: boolean) => {
         setShow(showValue);
+        refresh(true);
     }
 
     const handleShow = () => setShow(true);
@@ -56,8 +80,9 @@ const TaskItem = (props: any) => {
                         </div>
                     </div>
                     <div className="row">
-                        <label className="card-text text-secondary">Developer Assigned</label>
-                        <h6>{developerFirstName} {developerLastName}</h6>
+                        {user.role == 'Manager' && <label className="card-text text-secondary">Developer Assigned</label>}
+                        {user.role == 'Developer' && <label className="card-text text-secondary">Assigned by Manager</label>}
+                        <h6>{firstName} {lastName}</h6>
                     </div>
                 </div>
                 <div className="row mt-0">

@@ -9,52 +9,54 @@ import { FaPlus, FaPlusCircle, FaPlusSquare } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { TaskByStatus } from "../Task/TaskByStatus";
 import TaskItem from "../Task/TaskItem";
+import { TaskByStatusDeveloper } from "../Task/TaskByStatusDeveloper";
 
 interface IStatusManager {
-    managerId: string,
+    userId: string,
     statusId: number
 }
 
-export const AppContext = createContext<any>({});
+const APIBASEURL = 'https://localhost:44316/api/Task/GetTasksByStatusDeveloper';
+
 const DeveloperDashboard = () => {
 
     const user = JSON.parse(localStorage.getItem("User") || '{}');
     const userId = user.userId;
 
-    const statusTodo: IStatusManager = { managerId: userId, statusId: 1 }
-    const statusInProgress: IStatusManager = { managerId: userId, statusId: 2 }
-    const statusCodeReview: IStatusManager = { managerId: userId, statusId: 3 }
-    const statusCompleted: IStatusManager = { managerId: userId, statusId: 4 }
+    const statusTodo: IStatusManager = { userId: userId, statusId: 1 }
+    const statusInProgress: IStatusManager = { userId: userId, statusId: 2 }
+    const statusCodeReview: IStatusManager = { userId: userId, statusId: 3 }
+    const statusCompleted: IStatusManager = { userId: userId, statusId: 4 }
 
 
     const navigate = useNavigate();
 
-    const [todoTasks, setTodoTasks] = useState<TaskByStatus[]>([]);
-    const [inProgress, setInProgress] = useState<TaskByStatus[]>([]);
-    const [codeReview, setCodeReview] = useState<TaskByStatus[]>([]);
-    const [completed, setCompleted] = useState<TaskByStatus[]>([]);
+    const [todoTasks, setTodoTasks] = useState<TaskByStatusDeveloper[]>([]);
+    const [inProgress, setInProgress] = useState<TaskByStatusDeveloper[]>([]);
+    const [codeReview, setCodeReview] = useState<TaskByStatusDeveloper[]>([]);
+    const [completed, setCompleted] = useState<TaskByStatusDeveloper[]>([]);
 
 
     const getData = () => {
-        axios.post('https://localhost:44316/api/Task/GetTasksByStatus', statusTodo)
+        axios.post(APIBASEURL, statusTodo)
             .then(res => {
                 setTodoTasks(res.data.data);
             })
             .catch(err => console.log(err))
 
-        axios.post('https://localhost:44316/api/Task/GetTasksByStatus', statusInProgress)
+        axios.post(APIBASEURL, statusInProgress)
             .then(res => {
                 setInProgress(res.data.data);
             })
             .catch(err => console.log(err))
 
-        axios.post('https://localhost:44316/api/Task/GetTasksByStatus', statusCodeReview)
+        axios.post(APIBASEURL, statusCodeReview)
             .then(res => {
                 setCodeReview(res.data.data);
             })
             .catch(err => console.log(err))
 
-        axios.post('https://localhost:44316/api/Task/GetTasksByStatus', statusCompleted)
+        axios.post(APIBASEURL, statusCompleted)
             .then(res => {
                 setCompleted(res.data.data);
             })
@@ -66,56 +68,55 @@ const DeveloperDashboard = () => {
     }, []);
 
     return (
-        <AppContext.Provider value={{ getData }}>
             <div className="route-page-bg">
                 <div className="m-3">
                     <div>
                         <div className="row">
                             <div className="container col m-2 task-list-bg">
                                 <h4>To do</h4>
-                                {todoTasks.map((element: TaskByStatus, index) => {
+                                {todoTasks.map((element: TaskByStatusDeveloper, index) => {
                                     return (
                                         // <div className="col-md-8" key={index}>
                                         <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                            managerId={element.managerId} developerFirstName={element.developerFirstName} developerLastName={element.developerLastName}
-                                            createdAt={element.createdAt} statusId={1} developerId={element.developerId} actualTime={element.actualTime} />
+                                            managerId={element.managerId} firstName={element.managerFirstName} lastName={element.managerLastName}
+                                            createdAt={element.updatedAt} statusId={1} actualTime={element.actualTime} refresh={getData} />
                                         // </div>
                                     );
                                 })}
                             </div>
                             <div className="container col m-2 task-list-bg">
                                 <h4>In progress</h4>
-                                {inProgress.map((element: TaskByStatus, index) => {
+                                {inProgress.map((element: TaskByStatusDeveloper, index) => {
                                     return (
                                         // <div className="col-md-8" key={index}>
                                         <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                            managerId={element.managerId} developerFirstName={element.developerFirstName} developerLastName={element.developerLastName}
-                                            createdAt={element.createdAt} statusId={1} developerId={element.developerId} actualTime={element.actualTime} />
+                                        managerId={element.managerId} firstName={element.managerFirstName} lastName={element.managerLastName}
+                                        createdAt={element.updatedAt} statusId={2} actualTime={element.actualTime} refresh={getData}  />
                                         // </div>
                                     );
                                 })}
                             </div>
                             <div className="container col m-2 task-list-bg">
                                 <h4>Code review</h4>
-                                {codeReview.map((element: TaskByStatus, index) => {
+                                {codeReview.map((element: TaskByStatusDeveloper, index) => {
                                     return (
                                         // <div className="col-md-8" key={index}>
                                         <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                            managerId={element.managerId} developerFirstName={element.developerFirstName} developerLastName={element.developerLastName}
-                                            createdAt={element.createdAt} statusId={1} developerId={element.developerId} actualTime={element.actualTime} />
-                                        // </div>
+                                        managerId={element.managerId} firstName={element.managerFirstName} lastName={element.managerLastName}
+                                        createdAt={element.updatedAt} statusId={3} actualTime={element.actualTime} refresh={getData} />
+                                    // </div>
                                     );
                                 })}
                             </div>
                             <div className="container col m-2 task-list-bg">
                                 <h4>Completed</h4>
-                                {completed.map((element: TaskByStatus, index) => {
+                                {completed.map((element: TaskByStatusDeveloper, index) => {
                                     return (
                                         // <div className="col-md-8" key={index}>
                                         <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                            managerId={element.managerId} developerFirstName={element.developerFirstName} developerLastName={element.developerLastName}
-                                            createdAt={element.createdAt} statusId={1} developerId={element.developerId} actualTime={element.actualTime} />
-                                        // </div>
+                                        managerId={element.managerId} firstName={element.managerFirstName} lastName={element.managerLastName}
+                                        createdAt={element.updatedAt} statusId={4} actualTime={element.actualTime} refresh={getData}  />
+                                    // </div>
                                     );
                                 })}
                             </div>
@@ -124,7 +125,6 @@ const DeveloperDashboard = () => {
 
                 </div>
             </div>
-        </AppContext.Provider>
     );
 }
 
