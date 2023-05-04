@@ -59,7 +59,7 @@ const LandingPage = () => {
                         else if(user.role === "Developer")
                         {
                             console.log("Role: " + user.role);
-                            navigate("developer/home");
+                            navigate("developer/dashboard");
                         }
                     }
                 });

@@ -3,6 +3,6 @@ export interface Task{
     description:string,
     priority:string,
     estimatedTime:number,
-    developerId:string,
     managerId:string
+    developerId:string
 }

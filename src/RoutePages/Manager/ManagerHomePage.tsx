@@ -1,12 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import Navbar from "../../Components/Navbar";
-import Navpages from "../../Components/Navpages";
-import Sidebar from "../../Components/Sidebar";
 import '../../App.css';
 import { Routes, Route } from "react-router-dom";
-import '../../index.css'
-import Dashboard from "../Dashboard";
+import '../../index.css';
 import { Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "../../Components/Footer";
@@ -38,16 +34,6 @@ const ManagerHomePage = () => {
                         </Col>
                     </Row>
             </div>
-        {/* <div className="row">
-            <div className="col-md-2">
-            </div>
-            <div className="col-md-10">
-            <Routes>
-                <Route path="home" element={<ManagerDashboard />} />
-                <Route path="task/addTask" element={<AddTask />} />
-            </Routes>
-            </div>
-        </div> */}
         </>
     )
 };

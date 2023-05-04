@@ -1,7 +1,7 @@
 import React from "react";
 import NavbarLoggedIn from "./NavbarLoggedIn";
 import Navpages from "./Navpages";
-import Sidebar from './Sidebar'
+import Sidebar from './SidebarDeveloper'
 import '../App.css'
 import '../index.css'
 import { Row, Col } from "react-bootstrap";

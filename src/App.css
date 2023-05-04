@@ -274,6 +274,10 @@ body {
   border-radius: 0px;
 }
 
+.form-label{
+  margin-left: 3%;
+}
+
 .card2 {
   margin-top:12%; 
   margin-bottom:12%;

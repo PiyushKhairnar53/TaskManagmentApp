@@ -16,7 +16,7 @@ interface IStatusManager {
 }
 
 export const AppContext = createContext<any>({});
-const ManagerDashboard = () => {
+const DeveloperDashboard = () => {
 
     const user = JSON.parse(localStorage.getItem("User") || '{}');
     const userId = user.userId;
@@ -28,11 +28,6 @@ const ManagerDashboard = () => {
 
 
     const navigate = useNavigate();
-
-    const handleAddTask = () => {
-        navigate("/manager/task/addTask");
-    }
-
 
     const [todoTasks, setTodoTasks] = useState<TaskByStatus[]>([]);
     const [inProgress, setInProgress] = useState<TaskByStatus[]>([]);
@@ -73,12 +68,6 @@ const ManagerDashboard = () => {
     return (
         <AppContext.Provider value={{ getData }}>
             <div className="route-page-bg">
-                <div className="row">
-                    <div className="d-flex justify-content-between">
-                        <h3 className="manager-dashboard">Manager</h3>
-                        <Button className="add-task-button" variant="primary" onClick={handleAddTask}><FaPlus /> Add Task</Button>
-                    </div>
-                </div>
                 <div className="m-3">
                     <div>
                         <div className="row">
@@ -139,4 +128,4 @@ const ManagerDashboard = () => {
     );
 }
 
-export default ManagerDashboard
+export default DeveloperDashboard;
