@@ -6,37 +6,21 @@ const Footer = () => {
         <footer className="page-footer font-small blue pt-4">
             <div className="container-fluid text-center text-md-left">
                 <div className="row">
-                    <div className="col-md-6 mt-md-0 mt-3">
-                        <h5 className="text-uppercase">Footer Content</h5>
-                        <p>Here you can use rows and columns to organize your footer content.</p>
-                    </div>
+                <h5 className="text-uppercase">Task Manager</h5>
 
+                    <div className="d-flex justify-content-between">
+                        <div className="footer-content-left">
+                        <p>Our solution can increase your productivity rapidly.<br/> We provide one of the best features in our industry<br/>Mail us on following email address - </p>
+                        <address><a href="mailto:jim@rock.com">taskmanager@org.com</a></address>
+                        </div> 
+                        <p className="footer-content-right">Address : <br/>H-103, Sector - 9, JM Road <br/>Pune - 411049,Maharashtra<br/>India</p>
+                    </div>
                     <hr className="clearfix w-100 d-md-none pb-0" />
-
-                    <div className="col-md-3 mb-md-0 mb-3">
-                        <h5 className="text-uppercase">Links</h5>
-                        <ul className="list-unstyled">
-                            <li><a href="#!">Link 1</a></li>
-                            <li><a href="#!">Link 2</a></li>
-                            <li><a href="#!">Link 3</a></li>
-                            <li><a href="#!">Link 4</a></li>
-                        </ul>
-                    </div>
-
-                    <div className="col-md-3 mb-md-0 mb-3">
-                        <h5 className="text-uppercase">Links</h5>
-                        <ul className="list-unstyled">
-                            <li><a href="#!">Link 1</a></li>
-                            <li><a href="#!">Link 2</a></li>
-                            <li><a href="#!">Link 3</a></li>
-                            <li><a href="#!">Link 4</a></li>
-                        </ul>
-                    </div>
                 </div>
             </div>
 
             <div className="footer-copyright text-center py-3">© 2020 Copyright:
-                <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+                <a href="https://mdbootstrap.com/"> TaskManager.com</a>
             </div>
 
         </footer>

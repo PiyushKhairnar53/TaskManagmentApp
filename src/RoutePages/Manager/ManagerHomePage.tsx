@@ -5,12 +5,13 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import '../../index.css';
 import { Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Footer from "../../Components/Footer";
 import NavbarLoggedIn from "../../Components/NavbarLoggedIn";
 import AddTask from "../Task/AddTask";
-import SidebarManager from "../../Components/SidebarManager";
 import ManagerDashboard from "./ManagerDashboard";
 import ViewAllDevelopers from "../Developer/ViewAllDevelopers";
+import Sidebar from "../../Components/Sidebar";
+import ViewAllManagers from "./ViewAllManagers";
+import UserTasks from "../User/UserTasks";
 
 const ManagerHomePage = () => {
 
@@ -23,14 +24,16 @@ const ManagerHomePage = () => {
          <div className="route-page-bg">
                     <Row className="h-100 m-0">
                         <Col sm={2} className="m-0 p-0">
-                        <SidebarManager />
+                        <Sidebar />
                         </Col>
                         <Col sm={10} className="mr-0 p-0">
                         <NavbarLoggedIn />
                         <Routes>
                             <Route path="dashboard" element={<ManagerDashboard />} />
                             <Route path="task/addTask" element={<AddTask />} />
+                            <Route path="/viewAllManagers" element={<ViewAllManagers/>}/>
                             <Route path="/viewAllDevelopers" element={<ViewAllDevelopers />} />
+                            <Route path = "user/tasks" element={<UserTasks/>}/>
                         </Routes>
                         </Col>
                     </Row>

@@ -4,13 +4,42 @@ import { useState } from 'react';
 import ChangeStatusModal from "../Status/ChangeStatusModal";
 import { Developer } from "./Developer";
 import { Card } from "react-bootstrap";
-
+import { useNavigate } from "react-router-dom";
 
 interface IDeveloper {
     developer: Developer;
+    userRole:string
 }
 
-const DeveloperProfileItem: React.FC<IDeveloper> = ({ developer }) => {
+const DeveloperProfileItem: React.FC<IDeveloper> = ({ developer,userRole }) => {
+
+    const navigate = useNavigate();
+    const user = JSON.parse(localStorage.getItem("User") || '{}');
+
+
+    const handleSeeTasks = () => {
+        if(user.role == 'Manager'){
+        navigate('/manager/user/tasks',
+        {
+            state: {
+                targetUserId: developer.id,
+                targetUserFirstName:developer.firstName,
+                targetUserLastName:developer.lastName,
+                targetUserRole:userRole
+            }
+        });
+        }
+        if(user.role == 'Developer'){
+            navigate('/developer/user/tasks',
+            {
+                state: {
+                    targetUserId: developer.id,
+                    targetUserFirstName:developer.firstName,
+                    targetUserLastName:developer.lastName
+                }
+            });
+        }
+    }
 
     return (
         <div className="my-4">
@@ -39,7 +68,7 @@ const DeveloperProfileItem: React.FC<IDeveloper> = ({ developer }) => {
 
                     <div className="row mt-2">
                         <div>
-                            <button className="btn btn-primary">
+                            <button className="btn btn-primary" onClick={handleSeeTasks}>
                                 See Tasks
                             </button>
                         </div>

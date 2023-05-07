@@ -10,5 +10,6 @@ export interface TaskByStatus{
     developerLastName:string,
     createdAt:Date,
     developerId:string,
-    actualTime:number
+    actualTime:number,
+    userRole:string
 }

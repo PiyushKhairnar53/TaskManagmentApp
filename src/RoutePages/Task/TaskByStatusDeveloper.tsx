@@ -9,5 +9,7 @@ export interface TaskByStatusDeveloper{
     actualTime:number,
     managerFirstName:string,
     managerLastName:string,
-    updatedAt:Date,
+    userRole:string,
+    developerId:string,
+    updatedAt:Date
 }

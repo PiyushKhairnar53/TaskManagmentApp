@@ -8,25 +8,22 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "../../Components/Footer";
 import NavbarLoggedIn from "../../Components/NavbarLoggedIn";
 import UpdateTaskDeveloper from "./UpdateTaskDeveloper";
-import SidebarManager from "../../Components/SidebarManager";
 import DeveloperDashboard from "./DeveloperDashboard";
-import SidebarDeveloper from "../../Components/SidebarDeveloper";
+import Sidebar from "../../Components/Sidebar";
 import ViewAllDevelopers from "./ViewAllDevelopers";
 import ViewAllManagers from "../Manager/ViewAllManagers";
+import UserTasks from "../User/UserTasks";
 
 const DeveloperHomePage = () => {
 
     const user = JSON.parse(localStorage.getItem("User") || '{}');
-    console.log("Role of user - " + user.role);
-    console.log("token - " + user.token);
-    console.log("userId - " + user.userId);
-
+   
     return (
         <>
          <div className="route-page-bg">
                     <Row className="h-100 m-0">
                         <Col sm={2} className="m-0 p-0">
-                        <SidebarDeveloper />
+                        <Sidebar />
                         </Col>
                         <Col sm={10} className="mr-0 p-0">
                         <NavbarLoggedIn />
@@ -35,6 +32,7 @@ const DeveloperHomePage = () => {
                             <Route path="task/updateTask" element={<UpdateTaskDeveloper />} />
                             <Route path="/viewAllManagers" element={<ViewAllManagers />} />
                             <Route path="/viewAllDevelopers" element={<ViewAllDevelopers />} />
+                            <Route path = "user/tasks" element={<UserTasks/>}/>
                         </Routes>
                         </Col>
                     </Row>

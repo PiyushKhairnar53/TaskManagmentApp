@@ -4,7 +4,9 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import '../App.css'
 import '../index.css'
-import { FaCheck,FaCheckCircle,FaCheckDouble,FaCheckSquare } from 'react-icons/fa';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { FaCheck, FaCheckCircle, FaCheckDouble, FaCheckSquare } from 'react-icons/fa';
 import { Modal } from "react-bootstrap";
 import RegisterUser from "../RoutePages/Authentication/RegisterUser";
 import { Row, Col, Button } from "react-bootstrap";
@@ -16,29 +18,23 @@ const API_URL = "https://localhost:44316/api/Authentication/";
 
 const LandingPage = () => {
 
-    // localStorage.removeItem("User");
-
-    const user = JSON.parse(localStorage.getItem("User") || '{}');
-    console.log("user role"+user.role);
-
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
 
     const handleClose = () => {
-      setShow(false);
+        setShow(false);
     }
 
-    const closeModal = (showValue : boolean) =>
-    {
+    const closeModal = (showValue: boolean) => {
         setShow(showValue);
     }
 
-    const handleShow = () => setShow(true);  
- 
+    const handleShow = () => setShow(true);
+
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
-    const login = async () => {
+    const login = () => {
         if (username && password) {
             axios.post(API_URL + "login", {
                 username,
@@ -51,23 +47,32 @@ const LandingPage = () => {
                         console.log("Token : " + response.data.token);
                         console.log("Role: " + response.data.role);
                         console.log("User Id: " + response.data.userId);
-    
+
                         localStorage.setItem("User", JSON.stringify(response.data));
                         console.log("Local Storage: " + localStorage.getItem("User"));
                         const user = JSON.parse(localStorage.getItem("User") || '{}');
-    
-                        if(user.role === "Manager")
-                        {
+
+                        if (user.role === "Manager") {
                             console.log("Role: " + user.role);
                             navigate("manager/dashboard");
                         }
-                        else if(user.role === "Developer")
-                        {
+                        else if (user.role === "Developer") {
                             console.log("Role: " + user.role);
                             navigate("developer/dashboard");
                         }
                     }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    toast.warning('Username or password is wrong!', {
+                        position: toast.POSITION.TOP_RIGHT
+                    });
                 });
+        }
+        else {
+            toast.warning('Please fill all mandotary fields!', {
+                position: toast.POSITION.TOP_RIGHT
+            });
         }
     };
 
@@ -85,7 +90,7 @@ const LandingPage = () => {
                                     <div className="col-lg-6">
                                         <div className="card1 pb-5 mt-5">
                                             <div className="row justify-content-center">
-                                                <FaCheckCircle className="check-logo"/>
+                                                <FaCheckCircle className="check-logo" />
                                             </div>
                                             <div className="mt-2">
                                                 <h1><strong>Task Manager</strong></h1>
@@ -96,11 +101,12 @@ const LandingPage = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <div className="col-lg-6">
-                                        <div className="card2 card border-0 px-4 py-5">
+
+                                    <div className="col-lg-6 mt-5">
+                                        <div className="card2 shadow card border-0 px-5 mt-5 pt-3">
+                                            <h4><strong>Login</strong></h4>
                                             <div className="row pt-3">
-                                                <label className="mb-1"><h6 className="mb-0 text-sm">Username</h6></label>
+                                                <label className="mb-1 mt-1">Username</label>
                                                 <input className="mb-4" type="text" name="username"
                                                     placeholder="Enter a valid username"
                                                     value={username}
@@ -120,7 +126,7 @@ const LandingPage = () => {
                                             <div className="d-flex justify-content-center row mb-3 mt-5">
                                                 <Button type="submit" variant="primary" className="btn text-center" onClick={login}>Login</Button>
                                             </div>
-                                            <div className="row mb-4 pt-3">
+                                            <div className="row pt-3 pb-4">
                                                 <small className="font-weight-bold">Don't have an account? <strong><a className="text-primary" onClick={handleShow}>Register</a></strong> </small>
                                             </div>
                                         </div>
@@ -136,8 +142,9 @@ const LandingPage = () => {
                     </div>
                 </div>
                 <Modal show={show} onHide={handleClose}>
-                    <RegisterUser ShowModal={closeModal}/>
+                    <RegisterUser ShowModal={closeModal} />
                 </Modal>
+                <ToastContainer />
             </React.Fragment>
         </div>
     );

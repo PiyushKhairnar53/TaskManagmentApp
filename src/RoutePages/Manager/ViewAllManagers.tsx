@@ -14,7 +14,7 @@ const ViewAllManagers: React.FC = () => {
 
         axios.get('https://localhost:44316/api/Manager/GetAllManagers')
             .then(res => {
-                setDevelopersData(res.data)
+                setDevelopersData(res.data.data)
             })
             .catch(err => console.log(err))
     }
@@ -30,7 +30,7 @@ const ViewAllManagers: React.FC = () => {
                 {developersData.map((element: Developer, index) => {
                     return (
                         <div key={index} className="col-sm-3 mt-2">
-                            <DeveloperProfileItem developer={element} />
+                            <DeveloperProfileItem developer={element} userRole='Manager' />
                         </div>
                     )
                 })

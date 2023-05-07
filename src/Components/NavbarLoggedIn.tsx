@@ -22,8 +22,6 @@ const NavbarLoggedIn = () => {
             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" className="rounded-circle" />
           </a>
           <ul className="dropdown-menu text-small">
-            <li><NavLink to={"/profile"} className="dropdown-item">Profile</NavLink></li>
-            <li><hr className="dropdown-divider" /></li>
             <li><a className="dropdown-item" onClick={logoutUser} >Sign out</a></li>
           </ul>
         </div>

@@ -53,13 +53,17 @@
   display: block;
 }
 
+.sort-margin{
+  margin-right: 3%;
+}
+
 .add-task-button{
   margin-top: 1%;
   margin-right: 3%;
 }
 
 .manager-dashboard{
-  margin-top: 1%;
+  margin-top: 3.2%;
   margin-left: 3%;
 }
 
@@ -94,6 +98,14 @@
   margin-top: 10px;
 }
 
+.add-task{
+  margin-top: 3.40%;
+  margin-right: 3%;
+}
+
+
+
+
 .sidebar-tab{
   background-color: white;
   padding: 5px;
@@ -103,22 +115,15 @@
   color: black;
 }
 
-/* {
+.footer-content-left{
+  margin-top: 1%;
+  padding-left: 15%;
+}
 
-    margin-top: ;
-
-    -48px position: inherit;
-    inset: ;
-
-    0px auto auto 0px transform: translate3d(;
-
-        0px,
-
-        38.4px,
-
-        0px) margin-bottom:;
-
-    42px */
+.footer-content-right{
+  margin-top: 1%;
+  padding-right: 15%;
+}
 
 .side-tab{
   list-style: none;
@@ -127,8 +132,8 @@
 
 .check-logo{
   color: rgb(7, 71, 166);
-  height: 175px;
-  width: 175px;
+  height: 150px;
+  width: 150px;
 }
 
 .check-logo-navbar{

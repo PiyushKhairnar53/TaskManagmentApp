@@ -12,6 +12,9 @@ const TaskItem = (props: any) => {
     const navigate = useNavigate();
 
     const user = JSON.parse(localStorage.getItem("User") || '{}');
+    console.log("userId --" + user.userId);
+    console.log("managerId -- "+managerId);
+    console.log("developerI -- "+developerId);
 
     const [show, setShow] = useState(false);
 
@@ -21,6 +24,8 @@ const TaskItem = (props: any) => {
     }
 
     const handleUpdateTask = () => {
+
+        if(user.userId === managerId || user.userId === developerId){
 
         console.log('user role in taskitem -'+user.role);
 
@@ -57,6 +62,7 @@ const TaskItem = (props: any) => {
                     }
                 });
         }
+    }
     };
 
     const closeModal = (showValue: boolean) => {
@@ -87,6 +93,7 @@ const TaskItem = (props: any) => {
                         <h6>{firstName} {lastName}</h6>
                     </div>
                 </div>
+                {/* {user.userId != managerId || user.userId != developerId &&     */}
                 <div className="row mt-0">
                     <div>
                         <button className="btn btn-primary" onClick={handleShow}>
@@ -94,15 +101,18 @@ const TaskItem = (props: any) => {
                         </button>
                     </div>
                 </div>
+                {/* } */}
                 <div className="row mt-1 mb-2">
                     <p className="card-text button-font-size text-muted">
                         <small>Updated At - {dateOfCreation}</small>
                     </p>
                 </div>
             </div>
-            <Modal show={show} onHide={handleClose}>
+
+             <Modal show={show} onHide={handleClose}>
                 <ChangeStatusModal ShowModal={closeModal} TaskId={taskId} Title={title} StatusId={statusId} />
             </Modal>
+            
         </div>
     );
 };

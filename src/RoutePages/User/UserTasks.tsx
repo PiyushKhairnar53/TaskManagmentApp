@@ -10,24 +10,33 @@ import { useNavigate } from "react-router-dom";
 import { TaskByStatus } from "../Task/TaskByStatus";
 import TaskItem from "../Task/TaskItem";
 import { Developer } from "../Developer/Developer";
+import { useLocation } from "react-router-dom";
+import { TaskByStatusDeveloper } from "../Task/TaskByStatusDeveloper";
 
 interface IStatusManager {
     userId: string,
     statusId: number
 }
-interface IStatusManagerDeveloper {
-    managerId: string,
-    developerId: string,
-    statusId: number
-}
 
 const APIBASEURL = 'https://localhost:44316/api/Task/GetTasksByStatus';
-const FORDDEVELOPERAPIBASEURL = 'https://localhost:44316/api/Task/GetTasksByStatusForDeveloper';
+const APIBASEURLDEVELOPER = 'https://localhost:44316/api/Task/GetTasksByStatusDeveloper';
 
-const ManagerDashboard = () => {
 
-    const user = JSON.parse(localStorage.getItem("User") || '{}');
-    const userId = user.userId;
+const UserTasks:React.FC = () => {
+
+    var userId:string = '';
+    var userFirstName:string = '';
+    var userLastName:string = '';
+    var userRole:string = '';
+
+
+    const location = useLocation();
+    if (location.state != null) {
+            userId = location.state.targetUserId
+            userFirstName = location.state.targetUserFirstName
+            userLastName = location.state.targetUserLastName
+            userRole = location.state.targetUserRole
+    }
 
     const statusTodo: IStatusManager = { userId: userId, statusId: 1 }
     const statusInProgress: IStatusManager = { userId: userId, statusId: 2 }
@@ -36,69 +45,17 @@ const ManagerDashboard = () => {
 
     const navigate = useNavigate();
 
-    const handleAddTask = () => {
-        navigate("/manager/task/addTask");
-    }
-
     const [todoTasks, setTodoTasks] = useState<TaskByStatus[]>([]);
     const [inProgress, setInProgress] = useState<TaskByStatus[]>([]);
     const [codeReview, setCodeReview] = useState<TaskByStatus[]>([]);
     const [completed, setCompleted] = useState<TaskByStatus[]>([]);
-    const [developers, setDevelopers] = useState<Developer[]>([]);
-
-    const getDevelopers = () => {
-
-        axios.get('https://localhost:44316/api/Developer/GetAllDevelopers')
-            .then(res => {
-                setDevelopers(res.data.data)
-                getData();
-            })
-            .catch(err => console.log(err))
-    }
-
-    const handleChangeDeveloper = (e: any) => {
-
-        if (e.value) {
-            console.log("changed developer - " + e.value);
-            debugger
-            const statusTodoDeveloper: IStatusManagerDeveloper = { managerId: userId, developerId: e.value, statusId: 1 }
-            const statusInProgressDeveloper: IStatusManagerDeveloper = { managerId: userId, developerId: e.value, statusId: 2 }
-            const statusCodeReviewDeveloper: IStatusManagerDeveloper = { managerId: userId, developerId: e.value, statusId: 3 }
-            const statusCompletedDeveloper: IStatusManagerDeveloper = { managerId: userId, developerId: e.value, statusId: 4 }
-
-            getDataForDeveloper(statusTodoDeveloper,statusInProgressDeveloper,statusCodeReviewDeveloper,statusCompletedDeveloper);
-        }
-        else {
-            getData();
-        }
-    }
-
-    const getDataForDeveloper = (statusTodoForDev:IStatusManagerDeveloper,statusInProgressDev:IStatusManagerDeveloper,
-                                    statusCodeReviewDev:IStatusManagerDeveloper,statusCompletedDev:IStatusManagerDeveloper) => {
-        axios.post(FORDDEVELOPERAPIBASEURL, statusTodoForDev)
-        .then(res => {
-            setTodoTasks(res.data.data);
-        })
-        .catch(err => console.log(err))
-
-    axios.post(FORDDEVELOPERAPIBASEURL, statusInProgressDev)
-        .then(res => {
-            setInProgress(res.data.data);
-        })
-        .catch(err => console.log(err))
-
-    axios.post(FORDDEVELOPERAPIBASEURL, statusCodeReviewDev)
-        .then(res => {
-            setCodeReview(res.data.data);
-        })
-        .catch(err => console.log(err))
-
-    axios.post(FORDDEVELOPERAPIBASEURL, statusCompletedDev)
-        .then(res => {
-            setCompleted(res.data.data);
-        })
-        .catch(err => console.log(err))
-    }
+    
+    // if(userRole === 'Developer'){
+    // const [todoTasks, setTodoTasks] = useState<TaskByStatusDeveloper[]>([]);
+    // const [inProgress, setInProgress] = useState<TaskByStatusDeveloper[]>([]);
+    // const [codeReview, setCodeReview] = useState<TaskByStatusDeveloper[]>([]);
+    // const [completed, setCompleted] = useState<TaskByStatusDeveloper[]>([]);
+    // }
 
     const getData = () => {
         axios.post(APIBASEURL, statusTodo)
@@ -129,30 +86,12 @@ const ManagerDashboard = () => {
     }
 
     useEffect(() => {
-        getDevelopers();
+        getData();
     }, []);
 
     return (
         <div className="route-page-bg">
-            <div className="row">
-                <div className="d-flex justify-content-between">
-                    <h3 className="manager-dashboard">Manager</h3>
-                    <div className='w-50 p-1 mt-2'>
-                        <Form.Label className="text-start">Sort By Developer</Form.Label>
-                        <Form.Select className='text-center' aria-label="Matter" name="developerId"
-                            defaultValue="Select-Developer" onChange={(e) => handleChangeDeveloper(e.target)}>
-                            <option value="">All</option>
-                            {developers.map((item: Developer) => {
-                                return (<option key={item.id} value={item.id} >
-                                    {item.firstName} {item.lastName}</option>);
-                            })}
-                        </Form.Select>
-                    </div>
-                    <div className="add-task">
-                        <Button variant="primary" onClick={handleAddTask}><FaPlus /> Add Task</Button>
-                    </div>
-                </div>
-            </div>
+            
             <div className="m-3">
                 <div>
                     <div className="row">
@@ -204,4 +143,4 @@ const ManagerDashboard = () => {
     );
 }
 
-export default ManagerDashboard
+export default UserTasks

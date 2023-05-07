@@ -7,6 +7,7 @@ import { Task } from './Task';
 import { title } from 'process';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { TaskUpdate } from './TaskUpdate';
+import { ToastContainer, toast } from 'react-toastify';
 
 const AddTask: React.FC = () => {
 
@@ -57,7 +58,7 @@ const AddTask: React.FC = () => {
 
         axios.get('https://localhost:44316/api/Developer/GetAllDevelopers')
             .then(res => {
-                setDevelopersData(res.data)
+                setDevelopersData(res.data.data)
             })
             .catch(err => console.log(err))
     }
@@ -126,7 +127,8 @@ const AddTask: React.FC = () => {
             }
         }
         else {
-            alert("Please fill all details carefully!");
+            toast.warning('Please fill all mandotary fields!', {
+                position: toast.POSITION.TOP_RIGHT});
         }
     }
 
@@ -217,6 +219,7 @@ const AddTask: React.FC = () => {
             <div className='d-flex justify-content-end'>
                 <Button className='w-25 m-3' variant="primary" name="nextButton" onClick={addTask}>{buttonName}</Button>
             </div>
+            <ToastContainer />
         </div>
     )
 }
