@@ -65,6 +65,9 @@ const RegisterUser:React.FC<IModal> = ({ShowModal}) => {
                 })
                 .catch(function (error) {
                     console.log(error);
+                    toast.error('Something went wrong', {
+                        position: toast.POSITION.TOP_RIGHT
+                    });
                 });
                 console.log(user);
                 ShowModal(false);
@@ -144,7 +147,7 @@ const RegisterUser:React.FC<IModal> = ({ShowModal}) => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" name="nextButton" onClick={nextStep} disabled={user.firstName == "" && user.lastName==""}>
+                    <Button variant="primary" name="nextButton" onClick={nextStep} disabled={user.firstName === '' || user.lastName === '' || user.userRole === 'Select-Role'}>
                         Next
                     </Button>
                 </Modal.Footer>

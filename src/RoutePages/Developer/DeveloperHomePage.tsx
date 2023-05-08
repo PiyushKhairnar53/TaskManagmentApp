@@ -12,7 +12,9 @@ import DeveloperDashboard from "./DeveloperDashboard";
 import Sidebar from "../../Components/Sidebar";
 import ViewAllDevelopers from "./ViewAllDevelopers";
 import ViewAllManagers from "../Manager/ViewAllManagers";
-import UserTasks from "../User/UserTasks";
+import SeeDeveloperTasks from "./SeeDeveloperTasks";
+import SeeManagerTasks from "../Manager/SeeManagerTasks";
+import ProfilePage from "../User/ProfilePage";
 
 const DeveloperHomePage = () => {
 
@@ -32,7 +34,9 @@ const DeveloperHomePage = () => {
                             <Route path="task/updateTask" element={<UpdateTaskDeveloper />} />
                             <Route path="/viewAllManagers" element={<ViewAllManagers />} />
                             <Route path="/viewAllDevelopers" element={<ViewAllDevelopers />} />
-                            <Route path = "user/tasks" element={<UserTasks/>}/>
+                            <Route path = "tasks/developer" element={<SeeDeveloperTasks/>}/>
+                            <Route path = "tasks/manager" element={<SeeManagerTasks/>}/>
+                            <Route path = "/profile" element={<ProfilePage/>}/>
                         </Routes>
                         </Col>
                     </Row>

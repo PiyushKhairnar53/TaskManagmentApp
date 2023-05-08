@@ -103,14 +103,12 @@ const ManagerDashboard = () => {
     const getData = () => {
         axios.post(APIBASEURL, statusTodo)
             .then(res => {
-                debugger
                 setTodoTasks(res.data.data);
             })
             .catch(err => console.log(err))
 
         axios.post(APIBASEURL, statusInProgress)
             .then(res => {
-                debugger
                 setInProgress(res.data.data);
             })
             .catch(err => console.log(err))
@@ -133,7 +131,7 @@ const ManagerDashboard = () => {
     }, []);
 
     return (
-        <div className="route-page-bg">
+        <div >
             <div className="row">
                 <div className="d-flex justify-content-between">
                     <h3 className="manager-dashboard">Manager</h3>

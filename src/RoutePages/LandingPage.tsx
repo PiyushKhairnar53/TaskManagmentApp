@@ -20,7 +20,11 @@ const LandingPage = () => {
 
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
+    const [passwordShown, setPasswordShown] = useState(false);
 
+    const togglePassword = () => {
+        setPasswordShown(!passwordShown);
+    };
     const handleClose = () => {
         setShow(false);
     }
@@ -83,10 +87,10 @@ const LandingPage = () => {
                     <Navbar />
                 </div>
                 <div>
-                    <Row className="h-100 m-0">
-                        <div className="container-fluid p-4">
-                            <div className="card card0 border-0">
-                                <div className="row d-flex ">
+                    <Row className="h-100 m-0 bg-white">
+                        <div className="container-fluid">
+                            <div>
+                                <div className="row d-flex mt-3 mb-4">
                                     <div className="col-lg-6">
                                         <div className="card1 pb-5 mt-5">
                                             <div className="row justify-content-center">
@@ -97,34 +101,44 @@ const LandingPage = () => {
                                                 <p>Manage your tasks easily By using our solution <strong>Task Manager</strong></p>
                                             </div>
                                             <div className="row landing-image">
-                                                <img className="image" src="https://www.shutterstock.com/image-vector/two-developers-planning-their-work-600w-421328629.jpg" />
+                                                <img className="image" src='/task.png' />
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className="col-lg-6 mt-5">
+                                    <div className="pl-3 col-lg-6 mt-5">
                                         <div className="card2 shadow card border-0 px-5 mt-5 pt-3">
                                             <h4><strong>Login</strong></h4>
                                             <div className="row pt-3">
                                                 <label className="mb-1 mt-1">Username</label>
-                                                <input className="mb-4" type="text" name="username"
+                                                <input className="mb-4 mt-1" type="text" name="username"
                                                     placeholder="Enter a valid username"
                                                     value={username}
                                                     onChange={(e) => setUsername(e.target.value)} />
+                                                    <div className="d-flex justify-content-start">
                                                 {username == "" ? <p className="text-danger font-weight-bold">Please enter the Username</p> : null}
-
+                                                </div>
                                             </div>
                                             <div className="row pt-3">
                                                 <label className="mb-1"><h6 className="mb-0 text-sm">Password</h6></label>
-                                                <input type="password" name="password"
+                                                <input name="password"
+                                                    className="mt-1"
                                                     placeholder="Enter password"
                                                     value={password}
+                                                    type={passwordShown ? "text" : "password"}
                                                     onChange={(e) => setPassword(e.target.value)} />
-                                                {password == "" ? <p className="text-danger font-weight-bold">Please enter the Password</p> : null}
+                                                <div className='d-flex justify-content-between'>
+                                                    <div>
+                                                        {password == "" ? <p className="text-danger pt-3">Please enter the Password</p> : null}
+                                                    </div>
+                                                    <Button variant="transparent" className="btn text-primary" onClick={togglePassword}>Show Password</Button>
+                                                </div>
+
                                             </div>
 
-                                            <div className="d-flex justify-content-center row mb-3 mt-5">
+                                            <div className="d-flex justify-content-center row mb-3 mt-4">
                                                 <Button type="submit" variant="primary" className="btn text-center" onClick={login}>Login</Button>
+
                                             </div>
                                             <div className="row pt-3 pb-4">
                                                 <small className="font-weight-bold">Don't have an account? <strong><a className="text-primary" onClick={handleShow}>Register</a></strong> </small>

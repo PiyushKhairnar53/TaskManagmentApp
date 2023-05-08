@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
 import { useState } from 'react';
+import { FaPencilAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import ChangeStatusModal from "../Status/ChangeStatusModal";
 
@@ -93,15 +94,14 @@ const TaskItem = (props: any) => {
                         <h6>{firstName} {lastName}</h6>
                     </div>
                 </div>
-                {/* {user.userId != managerId || user.userId != developerId &&     */}
+                {(user.userId == managerId || user.userId == developerId) &&    
                 <div className="row mt-0">
                     <div>
-                        <button className="btn btn-primary" onClick={handleShow}>
-                            Change Status
+                        <button className="btn btn-primary btn-change-status" onClick={handleShow}>
+                           <small ><FaPencilAlt className="edit-status btn-change-status"/></small> Change Status
                         </button>
                     </div>
-                </div>
-                {/* } */}
+                </div>}
                 <div className="row mt-1 mb-2">
                     <p className="card-text button-font-size text-muted">
                         <small>Updated At - {dateOfCreation}</small>

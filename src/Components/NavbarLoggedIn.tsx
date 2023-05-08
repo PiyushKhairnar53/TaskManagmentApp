@@ -6,11 +6,22 @@ import { NavLink, useNavigate } from "react-router-dom";
 const NavbarLoggedIn = () => {
 
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("User") || '{}');
+  const userRole = user.role;
 
   const logoutUser = () =>{
       localStorage.removeItem("User");
       navigate("/");
       window.location.reload();
+  }
+
+  const seeProfile = () => {
+    if(userRole === 'Manager'){
+      navigate("/manager/profile");
+    }
+    if(userRole === 'Developer'){
+      navigate("/developer/profile");
+    }
   }
 
   return (
@@ -22,6 +33,8 @@ const NavbarLoggedIn = () => {
             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" className="rounded-circle" />
           </a>
           <ul className="dropdown-menu text-small">
+            <li><a className="dropdown-item" onClick={seeProfile} >Profile</a></li>
+            <hr/>
             <li><a className="dropdown-item" onClick={logoutUser} >Sign out</a></li>
           </ul>
         </div>

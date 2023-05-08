@@ -1,17 +1,14 @@
-import React, { createContext } from "react";
+import React from "react";
 import '../../index.css'
 import { useState, useEffect } from 'react';
 import '../../App.css'
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Card, Button, Form } from "react-bootstrap";
-import { FaPlus, FaPlusCircle, FaPlusSquare } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { TaskByStatus } from "../Task/TaskByStatus";
 import TaskItem from "../Task/TaskItem";
-import { Developer } from "../Developer/Developer";
 import { useLocation } from "react-router-dom";
-import { TaskByStatusDeveloper } from "../Task/TaskByStatusDeveloper";
+import { Form } from "react-bootstrap";
 
 interface IStatusManager {
     userId: string,
@@ -19,23 +16,21 @@ interface IStatusManager {
 }
 
 const APIBASEURL = 'https://localhost:44316/api/Task/GetTasksByStatus';
-const APIBASEURLDEVELOPER = 'https://localhost:44316/api/Task/GetTasksByStatusDeveloper';
 
+const SeeManagerTasks: React.FC = () => {
 
-const UserTasks:React.FC = () => {
-
-    var userId:string = '';
-    var userFirstName:string = '';
-    var userLastName:string = '';
-    var userRole:string = '';
+    var userId: string = '';
+    var userFirstName: string = '';
+    var userLastName: string = '';
+    var userRole: string = '';
 
 
     const location = useLocation();
     if (location.state != null) {
-            userId = location.state.targetUserId
-            userFirstName = location.state.targetUserFirstName
-            userLastName = location.state.targetUserLastName
-            userRole = location.state.targetUserRole
+        userId = location.state.targetUserId
+        userFirstName = location.state.targetUserFirstName
+        userLastName = location.state.targetUserLastName
+        userRole = location.state.targetUserRole
     }
 
     const statusTodo: IStatusManager = { userId: userId, statusId: 1 }
@@ -49,7 +44,7 @@ const UserTasks:React.FC = () => {
     const [inProgress, setInProgress] = useState<TaskByStatus[]>([]);
     const [codeReview, setCodeReview] = useState<TaskByStatus[]>([]);
     const [completed, setCompleted] = useState<TaskByStatus[]>([]);
-    
+
     // if(userRole === 'Developer'){
     // const [todoTasks, setTodoTasks] = useState<TaskByStatusDeveloper[]>([]);
     // const [inProgress, setInProgress] = useState<TaskByStatusDeveloper[]>([]);
@@ -91,7 +86,11 @@ const UserTasks:React.FC = () => {
 
     return (
         <div className="route-page-bg">
-            
+                <div className="row mt-0">
+                        <div className="d-flex justify-content-between">
+                            <h4 className="manager-dashboard">Manager / {userFirstName} {userLastName}</h4>
+                        </div>
+                    </div>
             <div className="m-3">
                 <div>
                     <div className="row">
@@ -143,4 +142,4 @@ const UserTasks:React.FC = () => {
     );
 }
 
-export default UserTasks
+export default SeeManagerTasks

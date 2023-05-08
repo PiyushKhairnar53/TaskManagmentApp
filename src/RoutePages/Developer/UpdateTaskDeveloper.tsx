@@ -109,7 +109,6 @@ const UpdateTaskDeveloper: React.FC = () => {
                                 <h6 className='d-flex justify-content-start form-label'>Enter Actual Time</h6>
                                 <Form.Control type="number" placeholder='in hours' name="actualTime" value={actualTime} onChange={(e) => setActualTime(e.target.value)} required />
                                 {!validateNumber(actualTime) && actualTime !== "" && actualTime !== 0 ? <p className="text-danger font-weight-bold">Please enter valid Estimated time</p> : null}
-
                             </Form.Group>
                         </div>
                     </div>

@@ -2,24 +2,24 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 import { useState } from 'react';
 import ChangeStatusModal from "../Status/ChangeStatusModal";
-import { Developer } from "./Developer";
+import { Developer } from "../Developer/Developer";
 import { Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-interface IDeveloper {
+interface IUser {
     developer: Developer;
     userRole:string
 }
 
-const DeveloperProfileItem: React.FC<IDeveloper> = ({ developer,userRole }) => {
+const UserProfileItem: React.FC<IUser> = ({ developer,userRole }) => {
 
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem("User") || '{}');
 
 
     const handleSeeTasks = () => {
-        if(user.role == 'Manager'){
-        navigate('/manager/user/tasks',
+        if(userRole == 'Manager'){
+        navigate('/manager/tasks/manager',
         {
             state: {
                 targetUserId: developer.id,
@@ -29,13 +29,14 @@ const DeveloperProfileItem: React.FC<IDeveloper> = ({ developer,userRole }) => {
             }
         });
         }
-        if(user.role == 'Developer'){
-            navigate('/developer/user/tasks',
+        if(userRole == 'Developer'){
+            navigate('/developer/tasks/developer',
             {
                 state: {
                     targetUserId: developer.id,
                     targetUserFirstName:developer.firstName,
-                    targetUserLastName:developer.lastName
+                    targetUserLastName:developer.lastName,
+                    targetUserRole:userRole
                 }
             });
         }
@@ -63,10 +64,6 @@ const DeveloperProfileItem: React.FC<IDeveloper> = ({ developer,userRole }) => {
                     </div>
 
                     <div className="row mt-3">
-                        <p className="card-text ">About : {developer.bio}</p>
-                    </div>
-
-                    <div className="row mt-2">
                         <div>
                             <button className="btn btn-primary" onClick={handleSeeTasks}>
                                 See Tasks
@@ -80,4 +77,4 @@ const DeveloperProfileItem: React.FC<IDeveloper> = ({ developer,userRole }) => {
     );
 };
 
-export default DeveloperProfileItem;
+export default UserProfileItem;

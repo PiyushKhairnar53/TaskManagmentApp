@@ -46,8 +46,7 @@ const SidebarDeveloper = () => {
                       <FaClipboard/>
                       <Button variant='transparent' className="sidebar-items text-white" onClick={() => navigate("../manager/dashboard")}>
                       <strong>Dashboard</strong></Button>
-                  </li>
-                }
+                  </li>}
 
                     <hr />
 

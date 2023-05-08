@@ -21,7 +21,7 @@ const AddTask: React.FC = () => {
     var taskId: number = 0;
     var taskTitle: string = '';
     var taskDescription: string = '';
-    var taskPriority: string = '';
+    var taskPriority: string = 'Select-Priority';
     var taskEstimatedTime: number = 0;
     var taskDeveloperId: string = '';
     var taskActualTime: number = 0;
@@ -48,11 +48,6 @@ const AddTask: React.FC = () => {
     const [developerId, setDeveloperId] = useState<string>(taskDeveloperId);
     const [actualTime, setActualTime] = useState<any>(taskActualTime);
 
-    // const [task, setTask] = useState<Task>({ title: taskTitle, description: taskDescription, priority : taskPriority, estimatedTime: taskEstimatedTime, developerId: 'Select-Developer', managerId: managerId });
-
-    // const handleChange = (e: any) => {
-    //     setTask({ ...task, [e.name]: e.value });
-    // };
 
     const setDevelopers = () => {
 
@@ -65,7 +60,7 @@ const AddTask: React.FC = () => {
 
     const addTask = () => {
 
-        if (title.trim() !== "" && description.trim() !== "" && developerId !== "" && estimatedTime > 0) {
+        if (title.trim() !== "" && description.trim() !== "" && developerId !== "" && estimatedTime > 0 && priority.trim() !== "Select-Priority") {
 
             console.log('task if -- ' + taskId);
             console.log('title if -- ' + title);
@@ -149,14 +144,14 @@ const AddTask: React.FC = () => {
             <Form>
                 <Form.Group className="p-3" controlId="exampleForm.ControlInput1">
                     <h6 className='d-flex justify-content-start form-label'>Title</h6>
-                    <Form.Control type="text" placeholder="John Doe" name="title" value={title} onChange={(e) => setTitle(e.target.value)} required />
+                    <Form.Control type="text" placeholder="Add User Registration" name="title" value={title} onChange={(e) => setTitle(e.target.value)} required />
                     {title == "" ? <p className="text-danger font-weight-bold">Please enter Title</p> : null}
                 </Form.Group>
 
                 <Form.Group className='p-3'
                     controlId="exampleForm.ControlTextarea1">
                     <h6 className='d-flex justify-content-start form-label'>Description</h6>
-                    <Form.Control as="textarea" rows={3} name="description" value={description} onChange={(e) => setDescription(e.target.value)} required />
+                    <Form.Control as="textarea" rows={3} placeholder='Registration feature in ABC application' name="description" value={description} onChange={(e) => setDescription(e.target.value)} required />
                     {description == "" ? <p className="text-danger font-weight-bold">Please enter Description</p> : null}
                 </Form.Group>
 
@@ -194,12 +189,12 @@ const AddTask: React.FC = () => {
                     controlId="exampleForm.ControlTextarea1">
                     <h6 className='d-flex justify-content-start form-label'>Select Priority</h6>
                     <Form.Select aria-label="Matter priority" defaultValue={priority} name="priority" onChange={(e) => setPriority(e.target.value)}>
-                        <option value="" disabled>Select-Priority</option>
-                        <option value="High"><h5><FaArrowUp /> High</h5></option>
+                        <option value="Select-Priority" disabled>Select-Priority</option>
+                        <option value="High">High</option>
                         <option value="Medium">Medium</option>
                         <option value="Low">Low</option>
-                        {priority == '' ? <p className="text-danger font-weight-bold">Please Select Priority</p> : null}
                     </Form.Select>
+                    {priority == "Select-Priority" ? <p className="text-danger font-weight-bold">Please Select Priority</p> : null}
                 </Form.Group>
 
                 {(buttonName == "Update") && (

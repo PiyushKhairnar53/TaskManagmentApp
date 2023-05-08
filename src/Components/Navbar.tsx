@@ -28,7 +28,7 @@ const Navbar = () => {
       <nav className="navbar">
         <h4 className="navbar-title text-white"><FaCheckCircle className="check-logo-navbar" /> Task Manager</h4>
         <div className="m-2">
-          <Button variant="transparent" className="btn text-white pr-2" onClick={handleShow}>Register</Button>
+          <Button variant="transparent" className="btn text-white pr-2" onClick={handleShow}><strong>Register</strong></Button>
         </div>
       </nav>
       <Modal show={show} onHide={handleClose}>

@@ -11,7 +11,9 @@ import ManagerDashboard from "./ManagerDashboard";
 import ViewAllDevelopers from "../Developer/ViewAllDevelopers";
 import Sidebar from "../../Components/Sidebar";
 import ViewAllManagers from "./ViewAllManagers";
-import UserTasks from "../User/UserTasks";
+import SeeManagerTasks from "./SeeManagerTasks";
+import SeeDeveloperTasks from "../Developer/SeeDeveloperTasks";
+import ProfilePage from "../User/ProfilePage";
 
 const ManagerHomePage = () => {
 
@@ -33,7 +35,9 @@ const ManagerHomePage = () => {
                             <Route path="task/addTask" element={<AddTask />} />
                             <Route path="/viewAllManagers" element={<ViewAllManagers/>}/>
                             <Route path="/viewAllDevelopers" element={<ViewAllDevelopers />} />
-                            <Route path = "user/tasks" element={<UserTasks/>}/>
+                            <Route path = "/tasks/manager" element={<SeeManagerTasks/>}/>
+                            <Route path = "/tasks/developer" element={<SeeDeveloperTasks/>}/>
+                            <Route path = "/profile" element={<ProfilePage/>}/>
                         </Routes>
                         </Col>
                     </Row>

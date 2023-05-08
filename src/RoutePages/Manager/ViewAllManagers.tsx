@@ -4,33 +4,33 @@ import { FaQuestionCircle, FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import axios from 'axios';
 import { Developer } from '../Developer/Developer';
 import { useNavigate } from 'react-router-dom';
-import DeveloperProfileItem from '../Developer/DeveloperProfileItem';
+import UserProfileItem from '../User/UserProfileItem';
 
 const ViewAllManagers: React.FC = () => {
 
-    const [developersData, setDevelopersData] = useState<Developer[]>([]);
+    const [managersData, setManagersData] = useState<Developer[]>([]);
 
-    const setDevelopers = () => {
+    const setManagers = () => {
 
         axios.get('https://localhost:44316/api/Manager/GetAllManagers')
             .then(res => {
-                setDevelopersData(res.data.data)
+                setManagersData(res.data.data)
             })
             .catch(err => console.log(err))
     }
 
     useEffect(() => {
-        setDevelopers();
+        setManagers();
     }, []);
 
     return (
         <div >
             <h4 className='text-center mt-3'>Managers</h4>
             <div className="row mx-4">
-                {developersData.map((element: Developer, index) => {
+                {managersData.map((element: Developer, index) => {
                     return (
                         <div key={index} className="col-sm-3 mt-2">
-                            <DeveloperProfileItem developer={element} userRole='Manager' />
+                            <UserProfileItem developer={element} userRole='Manager' />
                         </div>
                     )
                 })

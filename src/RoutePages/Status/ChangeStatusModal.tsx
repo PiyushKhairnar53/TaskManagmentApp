@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { FaQuestionCircle } from 'react-icons/fa';
-import { User } from '../User/User';
 import axios from 'axios';
 import { title } from 'process';
 
@@ -59,7 +58,8 @@ const ChangeStatusModal: React.FC<IModal> = ({ ShowModal, TaskId, Title, StatusI
                     <Form.Group className="p-3">
                         <Form.Label>Select Status <FaQuestionCircle /> </Form.Label>
                         <Form.Select aria-label="Select-Status" name="statusId"
-                            defaultValue="Select-Status"  onChange={(e) => handleChange(e.target)} required>
+                            defaultValue=""  onChange={(e) => handleChange(e.target)} required>
+                            <option value="" disabled>Select New Status</option>
                             <option value="1" disabled={StatusId == 1}>To do</option>
                             <option value="2" disabled={StatusId == 2}>In Progress</option>
                             <option value="3" disabled={StatusId == 3}>Code review</option>

@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Developer } from '../Developer/Developer';
 import { title } from 'process';
 import { useNavigate } from 'react-router-dom';
-import DeveloperProfileItem from './DeveloperProfileItem';
+import UserProfileItem from '../User/UserProfileItem';
 
 const ViewAllDevelopers: React.FC = () => {
 
@@ -31,7 +31,7 @@ const ViewAllDevelopers: React.FC = () => {
                 {developersData.map((element: Developer, index) => {
                     return (
                         <div key={index} className="col-sm-3 mt-2">
-                            <DeveloperProfileItem developer={element} userRole='Developer' />
+                            <UserProfileItem developer={element} userRole='Developer' />
                         </div>
                     )
                 })

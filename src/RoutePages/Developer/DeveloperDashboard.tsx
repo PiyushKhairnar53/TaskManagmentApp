@@ -125,18 +125,24 @@ const DeveloperDashboard = () => {
             .catch(err => console.log(err))
     }
 
+    const refreshData = (e:any) =>{
+        if(e.value == true){
+        getData();
+        }
+    }
+
     useEffect(() => {
         getManagers();
     }, []);
 
     return (
-        <div className="route-page-bg">
+        <div>
             <div className="row">
                 <div className="d-flex justify-content-between">
                     <h3 className="manager-dashboard">Developer</h3>
                     <div className='w-50 p-1 mt-2 sort-margin'>
-                        <Form.Label className="text-start">Sort By Manager</Form.Label>
-                        <Form.Select className='text-center' aria-label="Matter" name="developerId"
+                        <label className="text-start sort-by">Sort By Manager</label>
+                        <Form.Select className='text-center mt-1' aria-label="Matter" name="developerId"
                             defaultValue="Select-Developer" onChange={(e) => handleChangeDeveloper(e.target)}>
                             <option value="">All</option>
                             {managers.map((item: Manager) => {
@@ -170,7 +176,7 @@ const DeveloperDashboard = () => {
                                     <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
                                     managerId={element.managerId} firstName={element.managerFirstName} lastName={element.managerLastName} developerId={element.developerId} 
                                     createdAt={element.updatedAt} statusId={2} actualTime={element.actualTime} refresh={getData} />
-                                    // </div>
+                                 // </div>
                                 );
                             })}
                         </div>
