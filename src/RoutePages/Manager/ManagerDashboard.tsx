@@ -59,8 +59,6 @@ const ManagerDashboard = () => {
     const handleChangeDeveloper = (e: any) => {
 
         if (e.value) {
-            console.log("changed developer - " + e.value);
-            debugger
             const statusTodoDeveloper: IStatusManagerDeveloper = { managerId: userId, developerId: e.value, statusId: 1 }
             const statusInProgressDeveloper: IStatusManagerDeveloper = { managerId: userId, developerId: e.value, statusId: 2 }
             const statusCodeReviewDeveloper: IStatusManagerDeveloper = { managerId: userId, developerId: e.value, statusId: 3 }
@@ -132,7 +130,6 @@ const ManagerDashboard = () => {
 
     return (
         <div >
-            <div className="row">
                 <div className="d-flex justify-content-between">
                     <h3 className="manager-dashboard">Manager</h3>
                     <div className='w-50 p-1 mt-2'>
@@ -150,7 +147,6 @@ const ManagerDashboard = () => {
                         <Button variant="primary" onClick={handleAddTask}><FaPlus /> Add Task</Button>
                     </div>
                 </div>
-            </div>
             <div className="m-3">
                 <div>
                     <div className="row">
@@ -159,7 +155,7 @@ const ManagerDashboard = () => {
                             {todoTasks.map((element: TaskByStatus, index) => {
                                 return (
                                     <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                        managerId={element.managerId} firstName={element.developerFirstName} lastName={element.developerLastName}
+                                        managerId={element.managerId} firstName={element.developerFirstName} lastName={element.developerLastName} frontUserRole={'Manager'}
                                         createdAt={element.createdAt} statusId={1} developerId={element.developerId} actualTime={element.actualTime} refresh={getData} />
                                 );
                             })}
@@ -169,7 +165,7 @@ const ManagerDashboard = () => {
                             {inProgress.map((element: TaskByStatus, index) => {
                                 return (
                                     <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                        managerId={element.managerId} firstName={element.developerFirstName} lastName={element.developerLastName}
+                                        managerId={element.managerId} firstName={element.developerFirstName} lastName={element.developerLastName} frontUserRole={'Manager'}
                                         createdAt={element.createdAt} statusId={2} developerId={element.developerId} actualTime={element.actualTime} refresh={getData} />
                                 );
                             })}
@@ -179,7 +175,7 @@ const ManagerDashboard = () => {
                             {codeReview.map((element: TaskByStatus, index) => {
                                 return (
                                     <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                        managerId={element.managerId} firstName={element.developerFirstName} lastName={element.developerLastName}
+                                        managerId={element.managerId} firstName={element.developerFirstName} lastName={element.developerLastName} frontUserRole={'Manager'}
                                         createdAt={element.createdAt} statusId={3} developerId={element.developerId} actualTime={element.actualTime} refresh={getData} />
                                 );
                             })}
@@ -189,7 +185,7 @@ const ManagerDashboard = () => {
                             {completed.map((element: TaskByStatus, index) => {
                                 return (
                                     <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                        managerId={element.managerId} firstName={element.developerFirstName} lastName={element.developerLastName}
+                                        managerId={element.managerId} firstName={element.developerFirstName} lastName={element.developerLastName} frontUserRole={'Manager'}
                                         createdAt={element.createdAt} statusId={4} developerId={element.developerId} actualTime={element.actualTime} refresh={getData} />
                                 );
                             })}

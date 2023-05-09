@@ -1,5 +1,3 @@
-import React from "react";
-import { useEffect, useState } from "react";
 import '../../App.css';
 import { Routes, Route, useNavigate } from "react-router-dom";
 import '../../index.css';
@@ -16,10 +14,6 @@ import SeeDeveloperTasks from "../Developer/SeeDeveloperTasks";
 import ProfilePage from "../User/ProfilePage";
 
 const ManagerHomePage = () => {
-
-    const user = JSON.parse(localStorage.getItem("User") || '{}');
-
-    console.log("Manager home - " + user.token + " " +user.role);
  
     return (
         <>

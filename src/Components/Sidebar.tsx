@@ -12,7 +12,6 @@ const SidebarDeveloper = () => {
 
     const user = JSON.parse(localStorage.getItem("User") || '{}');
     const userRole = user.role;
-    console.log('sidebar developer - '+userRole)
 
     const navigate = useNavigate();
     return (

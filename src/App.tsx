@@ -12,7 +12,6 @@ import Loader from './Config/Loader';
 
 function App() {
 
-
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

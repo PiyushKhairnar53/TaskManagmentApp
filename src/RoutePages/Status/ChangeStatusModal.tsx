@@ -39,7 +39,6 @@ const ChangeStatusModal: React.FC<IModal> = ({ ShowModal, TaskId, Title, StatusI
             console.log("new status"+newStatus);
             axios.put('https://localhost:44316/api/Task/UpdateTaskStatus', newStatus)
             .then((res) => {
-                console.log(res.data.data)
                 CloseModal();
             })
             .catch(function (error) {
@@ -60,10 +59,10 @@ const ChangeStatusModal: React.FC<IModal> = ({ ShowModal, TaskId, Title, StatusI
                         <Form.Select aria-label="Select-Status" name="statusId"
                             defaultValue=""  onChange={(e) => handleChange(e.target)} required>
                             <option value="" disabled>Select New Status</option>
-                            <option value="1" disabled={StatusId == 1}>To do</option>
-                            <option value="2" disabled={StatusId == 2}>In Progress</option>
-                            <option value="3" disabled={StatusId == 3}>Code review</option>
-                            <option value="4" disabled={StatusId == 4}>Completed</option>
+                            <option value="1" disabled={StatusId === 1}>To do</option>
+                            <option value="2" disabled={StatusId === 2}>In Progress</option>
+                            <option value="3" disabled={StatusId === 3}>Code review</option>
+                            <option value="4" disabled={StatusId === 4}>Completed</option>
                         </Form.Select>
                     </Form.Group>
                 </Form>

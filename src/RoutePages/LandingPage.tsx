@@ -6,7 +6,7 @@ import '../App.css'
 import '../index.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FaCheck, FaCheckCircle, FaCheckDouble, FaCheckSquare } from 'react-icons/fa';
+import { FaCheckCircle } from 'react-icons/fa';
 import { Modal } from "react-bootstrap";
 import RegisterUser from "../RoutePages/Authentication/RegisterUser";
 import { Row, Col, Button } from "react-bootstrap";
@@ -47,21 +47,13 @@ const LandingPage = () => {
                 .then(response => {
 
                     if (response.data.token) {
-
-                        console.log("Token : " + response.data.token);
-                        console.log("Role: " + response.data.role);
-                        console.log("User Id: " + response.data.userId);
-
                         localStorage.setItem("User", JSON.stringify(response.data));
-                        console.log("Local Storage: " + localStorage.getItem("User"));
                         const user = JSON.parse(localStorage.getItem("User") || '{}');
 
                         if (user.role === "Manager") {
-                            console.log("Role: " + user.role);
                             navigate("manager/dashboard");
                         }
                         else if (user.role === "Developer") {
-                            console.log("Role: " + user.role);
                             navigate("developer/dashboard");
                         }
                     }
@@ -107,20 +99,20 @@ const LandingPage = () => {
                                     </div>
 
                                     <div className="pl-3 col-lg-6 mt-5">
-                                        <div className="card2 shadow card border-0 px-5 mt-5 pt-3">
-                                            <h4><strong>Login</strong></h4>
+                                        <div className="card2 shadow card border-0 px-5 mt-5 pt-2">
+                                            <h4 className="mt-2"><strong>Login</strong></h4>
                                             <div className="row pt-3">
-                                                <label className="mb-1 mt-1">Username</label>
-                                                <input className="mb-4 mt-1" type="text" name="username"
+                                                <label className="mb-1 mt-1 text-start"><h6 className="mb-0 text-start">Username</h6></label>
+                                                <input className="mt-1" type="text" name="username"
                                                     placeholder="Enter a valid username"
                                                     value={username}
                                                     onChange={(e) => setUsername(e.target.value)} />
-                                                    <div className="d-flex justify-content-start">
-                                                {username == "" ? <p className="text-danger font-weight-bold">Please enter the Username</p> : null}
+                                                <div className="d-flex justify-content-start">
+                                                    {username == "" ? <p className="text-danger pt-2">Please enter the Username</p> : null}
                                                 </div>
                                             </div>
                                             <div className="row pt-3">
-                                                <label className="mb-1"><h6 className="mb-0 text-sm">Password</h6></label>
+                                                <label className="mb-1 mt-2"><h6 className="mb-0 text-start">Password</h6></label>
                                                 <input name="password"
                                                     className="mt-1"
                                                     placeholder="Enter password"
@@ -129,7 +121,7 @@ const LandingPage = () => {
                                                     onChange={(e) => setPassword(e.target.value)} />
                                                 <div className='d-flex justify-content-between'>
                                                     <div>
-                                                        {password == "" ? <p className="text-danger pt-3">Please enter the Password</p> : null}
+                                                        {password == "" ? <p className="text-danger pt-2">Please enter the Password</p> : null}
                                                     </div>
                                                     <Button variant="transparent" className="btn text-primary" onClick={togglePassword}>Show Password</Button>
                                                 </div>

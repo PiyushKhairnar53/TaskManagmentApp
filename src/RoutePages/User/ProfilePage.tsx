@@ -13,7 +13,6 @@ const ProfilePage = () => {
     const user = JSON.parse(localStorage.getItem("User") || '{}');
     const userId = user.userId;
     const userRole = user.role;
-    console.log("user id profile*** - " + userId + " - " + userRole)
 
     const [userData, setUserData] = useState<any>();
 
@@ -23,9 +22,6 @@ const ProfilePage = () => {
             axios.get(`https://localhost:44316/api/Developer/${userId}`)
                 .then(res => {
                     setUserData(res.data.data);
-                    console.log(userData)
-                    console.log(userData.firstName)
-                    console.log(userData.lastName)
                 })
                 .catch(err => console.log(err))
         }
@@ -34,11 +30,7 @@ const ProfilePage = () => {
             debugger
             axios.get(`https://localhost:44316/api/Manager/${userId}`)
                 .then(res => {
-                    debugger
                     setUserData(res.data.data);
-                    console.log(res.data.data);
-                    console.log(userData)
-                    console.log(userData.firstName)
                 })
                 .catch(err => console.log(err))
         }
@@ -78,10 +70,6 @@ const ProfilePage = () => {
                         {userData && <div className="d-flex justify-content-center">
                             <p className="card-text pb-5"><strong>About : {userData.bio}</strong></p>
                         </div>}
-                        {/* <div className="d-flex justify-content-start">
-                            <label className="card-text">Skills : </label>
-                        </div> */}
-
                     </div>
             </div>
         </React.Fragment>

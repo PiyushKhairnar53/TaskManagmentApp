@@ -264,6 +264,10 @@
   outline: none;
 }
 
+.manager-tabbar{
+  margin: 0 !important;
+}
+
 .my-spinner {
   display: flex;
   position: fixed;

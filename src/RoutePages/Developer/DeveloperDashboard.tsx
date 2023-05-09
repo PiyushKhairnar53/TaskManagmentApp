@@ -57,8 +57,6 @@ const DeveloperDashboard = () => {
     const handleChangeDeveloper = (e: any) => {
 
         if (e.value) {
-            console.log("changed manager - " + e.value);
-            debugger
             const statusTodoDeveloper: IStatusManagerDeveloper = { managerId: e.value, developerId: userId, statusId: 1 }
             const statusInProgressDeveloper: IStatusManagerDeveloper = { managerId: e.value, developerId: userId, statusId: 2 }
             const statusCodeReviewDeveloper: IStatusManagerDeveloper = { managerId: e.value, developerId: userId, statusId: 3 }
@@ -125,12 +123,6 @@ const DeveloperDashboard = () => {
             .catch(err => console.log(err))
     }
 
-    const refreshData = (e:any) =>{
-        if(e.value == true){
-        getData();
-        }
-    }
-
     useEffect(() => {
         getManagers();
     }, []);
@@ -160,11 +152,9 @@ const DeveloperDashboard = () => {
                             <h4>To do</h4>
                             {todoTasks.map((element: TaskByStatusDeveloper, index) => {
                                 return (
-                                    // <div className="col-md-8" key={index}>
                                     <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                        managerId={element.managerId} firstName={element.managerFirstName} lastName={element.managerLastName} developerId={element.developerId} 
+                                        managerId={element.managerId} firstName={element.managerFirstName} lastName={element.managerLastName} developerId={element.developerId} frontUserRole={'Developer'}
                                         createdAt={element.updatedAt} statusId={1} actualTime={element.actualTime} refresh={getData} />
-                                    // </div>
                                 );
                             })}
                         </div>
@@ -172,11 +162,9 @@ const DeveloperDashboard = () => {
                             <h4>In progress</h4>
                             {inProgress.map((element: TaskByStatusDeveloper, index) => {
                                 return (
-                                    // <div className="col-md-8" key={index}>
                                     <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                    managerId={element.managerId} firstName={element.managerFirstName} lastName={element.managerLastName} developerId={element.developerId} 
+                                    managerId={element.managerId} firstName={element.managerFirstName} lastName={element.managerLastName} developerId={element.developerId} frontUserRole={'Developer'}
                                     createdAt={element.updatedAt} statusId={2} actualTime={element.actualTime} refresh={getData} />
-                                 // </div>
                                 );
                             })}
                         </div>
@@ -184,11 +172,9 @@ const DeveloperDashboard = () => {
                             <h4>Code review</h4>
                             {codeReview.map((element: TaskByStatusDeveloper, index) => {
                                 return (
-                                    // <div className="col-md-8" key={index}>
                                     <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                    managerId={element.managerId} firstName={element.managerFirstName} lastName={element.managerLastName} developerId={element.developerId} 
+                                    managerId={element.managerId} firstName={element.managerFirstName} lastName={element.managerLastName} developerId={element.developerId} frontUserRole={'Developer'}
                                     createdAt={element.updatedAt} statusId={3} actualTime={element.actualTime} refresh={getData} />
-                                    // </div>
                                 );
                             })}
                         </div>
@@ -196,11 +182,9 @@ const DeveloperDashboard = () => {
                             <h4>Completed</h4>
                             {completed.map((element: TaskByStatusDeveloper, index) => {
                                 return (
-                                    // <div className="col-md-8" key={index}>
                                     <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                    managerId={element.managerId} firstName={element.managerFirstName} lastName={element.managerLastName} developerId={element.developerId} 
+                                    managerId={element.managerId} firstName={element.managerFirstName} lastName={element.managerLastName} developerId={element.developerId} frontUserRole={'Developer'}
                                     createdAt={element.updatedAt} statusId={4} actualTime={element.actualTime} refresh={getData} />
-                                    // </div>
                                 );
                             })}
                         </div>

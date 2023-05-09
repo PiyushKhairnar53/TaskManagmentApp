@@ -2,11 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { FaQuestionCircle, FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import axios from 'axios';
-import { Developer } from './Developer';
-import { Task } from '../Task/Task';
-import { title } from 'process';
+import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { TaskUpdate } from '../Task/TaskUpdate';
 import { TaskDeveloper } from '../Task/TaskDeveloper';
 
 const UpdateTaskDeveloper: React.FC = () => {
@@ -39,7 +36,6 @@ const UpdateTaskDeveloper: React.FC = () => {
 
             axios.put(`https://localhost:44316/api/Task/UpdateTaskDeveloper`, updateTask)
                 .then((res) => {
-                    console.log(res.data);
                     navigate("/developer/dashboard");
                 })
                 .catch(function (error) {
@@ -53,7 +49,9 @@ const UpdateTaskDeveloper: React.FC = () => {
 
         }
         else {
-            alert("Please fill all details carefully!");
+            toast.warning('Please fill all fields carefully!', {
+                position: toast.POSITION.TOP_RIGHT
+            });
         }
     }
 
@@ -119,6 +117,7 @@ const UpdateTaskDeveloper: React.FC = () => {
             <div className='d-flex justify-content-end'>
                 <Button className='w-25 m-3' variant="primary" name="nextButton" onClick={updateTask}>Update</Button>
             </div>
+            <ToastContainer />
         </div>
     )
 }

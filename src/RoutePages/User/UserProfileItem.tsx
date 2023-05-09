@@ -16,9 +16,8 @@ const UserProfileItem: React.FC<IUser> = ({ developer,userRole }) => {
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem("User") || '{}');
 
-
     const handleSeeTasks = () => {
-        if(userRole == 'Manager'){
+        if(userRole === 'Manager'){
         navigate('/manager/tasks/manager',
         {
             state: {
@@ -29,7 +28,7 @@ const UserProfileItem: React.FC<IUser> = ({ developer,userRole }) => {
             }
         });
         }
-        if(userRole == 'Developer'){
+        if(userRole === 'Developer'){
             navigate('/developer/tasks/developer',
             {
                 state: {

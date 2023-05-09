@@ -38,31 +38,20 @@ const SeeManagerTasks: React.FC = () => {
     const statusCodeReview: IStatusManager = { userId: userId, statusId: 3 }
     const statusCompleted: IStatusManager = { userId: userId, statusId: 4 }
 
-    const navigate = useNavigate();
-
     const [todoTasks, setTodoTasks] = useState<TaskByStatus[]>([]);
     const [inProgress, setInProgress] = useState<TaskByStatus[]>([]);
     const [codeReview, setCodeReview] = useState<TaskByStatus[]>([]);
     const [completed, setCompleted] = useState<TaskByStatus[]>([]);
 
-    // if(userRole === 'Developer'){
-    // const [todoTasks, setTodoTasks] = useState<TaskByStatusDeveloper[]>([]);
-    // const [inProgress, setInProgress] = useState<TaskByStatusDeveloper[]>([]);
-    // const [codeReview, setCodeReview] = useState<TaskByStatusDeveloper[]>([]);
-    // const [completed, setCompleted] = useState<TaskByStatusDeveloper[]>([]);
-    // }
-
     const getData = () => {
         axios.post(APIBASEURL, statusTodo)
             .then(res => {
-                debugger
                 setTodoTasks(res.data.data);
             })
             .catch(err => console.log(err))
 
         axios.post(APIBASEURL, statusInProgress)
             .then(res => {
-                debugger
                 setInProgress(res.data.data);
             })
             .catch(err => console.log(err))
@@ -99,7 +88,7 @@ const SeeManagerTasks: React.FC = () => {
                             {todoTasks.map((element: TaskByStatus, index) => {
                                 return (
                                     <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                        managerId={element.managerId} firstName={element.developerFirstName} lastName={element.developerLastName}
+                                        managerId={element.managerId} firstName={element.developerFirstName} lastName={element.developerLastName} frontUserRole={'Manager'}
                                         createdAt={element.createdAt} statusId={1} developerId={element.developerId} actualTime={element.actualTime} refresh={getData} />
                                 );
                             })}
@@ -109,7 +98,7 @@ const SeeManagerTasks: React.FC = () => {
                             {inProgress.map((element: TaskByStatus, index) => {
                                 return (
                                     <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                        managerId={element.managerId} firstName={element.developerFirstName} lastName={element.developerLastName}
+                                        managerId={element.managerId} firstName={element.developerFirstName} lastName={element.developerLastName} frontUserRole={'Manager'}
                                         createdAt={element.createdAt} statusId={2} developerId={element.developerId} actualTime={element.actualTime} refresh={getData} />
                                 );
                             })}
@@ -119,7 +108,7 @@ const SeeManagerTasks: React.FC = () => {
                             {codeReview.map((element: TaskByStatus, index) => {
                                 return (
                                     <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                        managerId={element.managerId} firstName={element.developerFirstName} lastName={element.developerLastName}
+                                        managerId={element.managerId} firstName={element.developerFirstName} lastName={element.developerLastName} frontUserRole={'Manager'}
                                         createdAt={element.createdAt} statusId={3} developerId={element.developerId} actualTime={element.actualTime} refresh={getData} />
                                 );
                             })}
@@ -129,7 +118,7 @@ const SeeManagerTasks: React.FC = () => {
                             {completed.map((element: TaskByStatus, index) => {
                                 return (
                                     <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                        managerId={element.managerId} firstName={element.developerFirstName} lastName={element.developerLastName}
+                                        managerId={element.managerId} firstName={element.developerFirstName} lastName={element.developerLastName} frontUserRole={'Manager'}
                                         createdAt={element.createdAt} statusId={4} developerId={element.developerId} actualTime={element.actualTime} refresh={getData} />
                                 );
                             })}

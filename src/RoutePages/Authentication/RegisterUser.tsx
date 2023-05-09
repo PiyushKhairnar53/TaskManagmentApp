@@ -52,7 +52,6 @@ const RegisterUser:React.FC<IModal> = ({ShowModal}) => {
                 .catch(function (error) {
                     console.log(error);
                 });
-                console.log(user);
                 ShowModal(false);
             }
             if(user.userRole === "Developer"){
@@ -69,7 +68,6 @@ const RegisterUser:React.FC<IModal> = ({ShowModal}) => {
                         position: toast.POSITION.TOP_RIGHT
                     });
                 });
-                console.log(user);
                 ShowModal(false);
             }
         }
@@ -169,7 +167,7 @@ const RegisterUser:React.FC<IModal> = ({ShowModal}) => {
                         </Form.Group>
 
                         <Form.Group className="p-3">
-                            <Form.Label>Enter Password<FaQuestionCircle /> </Form.Label>
+                            <Form.Label clas>Enter Password<FaQuestionCircle /> </Form.Label>
                             <Form.Control type={passwordShown ? "text" : "password"} placeholder="********" name="password" onChange={(e) => handleChange(e.target)} required/>
                             <div className='d-flex justify-content-between'>
                             <div>

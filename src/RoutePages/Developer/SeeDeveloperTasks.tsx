@@ -46,14 +46,12 @@ const SeeDeveloperTasks: React.FC = () => {
     const getData = () => {
         axios.post(APIBASEURL, statusTodo)
             .then(res => {
-                debugger
                 setTodoTasks(res.data.data);
             })
             .catch(err => console.log(err))
 
         axios.post(APIBASEURL, statusInProgress)
             .then(res => {
-                debugger
                 setInProgress(res.data.data);
             })
             .catch(err => console.log(err))
@@ -90,7 +88,7 @@ const SeeDeveloperTasks: React.FC = () => {
                             {todoTasks.map((element: TaskByStatusDeveloper, index) => {
                                 return (
                                     <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                        managerId={element.managerId} firstName={element.managerFirstName} lastName={element.managerLastName}
+                                        managerId={element.managerId} firstName={element.managerFirstName} lastName={element.managerLastName} frontUserRole={'Developer'}
                                         createdAt={element.updatedAt} statusId={1} developerId={element.developerId} actualTime={element.actualTime} refresh={getData} />
                                 );
                             })}
@@ -100,7 +98,7 @@ const SeeDeveloperTasks: React.FC = () => {
                             {inProgress.map((element: TaskByStatusDeveloper, index) => {
                                 return (
                                     <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                        managerId={element.managerId} firstName={element.managerFirstName} lastName={element.managerLastName}
+                                        managerId={element.managerId} firstName={element.managerFirstName} lastName={element.managerLastName} frontUserRole={'Developer'}
                                         createdAt={element.updatedAt} statusId={1} developerId={element.developerId} actualTime={element.actualTime} refresh={getData} />
                                 );
                             })}
@@ -110,7 +108,7 @@ const SeeDeveloperTasks: React.FC = () => {
                             {codeReview.map((element: TaskByStatusDeveloper, index) => {
                                 return (
                                     <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                        managerId={element.managerId} firstName={element.managerFirstName} lastName={element.managerLastName}
+                                        managerId={element.managerId} firstName={element.managerFirstName} lastName={element.managerLastName} frontUserRole={'Developer'}
                                         createdAt={element.updatedAt} statusId={1} developerId={element.developerId} actualTime={element.actualTime} refresh={getData} />
                                 );
                             })}
@@ -120,7 +118,7 @@ const SeeDeveloperTasks: React.FC = () => {
                             {completed.map((element: TaskByStatusDeveloper, index) => {
                                 return (
                                     <TaskItem taskId={element.id} title={element.title} priority={element.priority} estimatedTime={element.estimatedTime} description={element.description}
-                                        managerId={element.managerId} firstName={element.managerFirstName} lastName={element.managerLastName}
+                                        managerId={element.managerId} firstName={element.managerFirstName} lastName={element.managerLastName} frontUserRole={'Developer'}
                                         createdAt={element.updatedAt} statusId={1} developerId={element.developerId} actualTime={element.actualTime} refresh={getData} />
                                 );
                             })}

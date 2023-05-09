@@ -13,7 +13,6 @@ const ProfilePage = () => {
     const user = JSON.parse(localStorage.getItem("User") || '{}');
     const userId = user.userId;
     const userRole = user.role;
-    console.log("user id profile*** - " + userId + " - " + userRole)
 
     const [userData, setUserData] = useState<any>();
 
@@ -23,9 +22,6 @@ const ProfilePage = () => {
             axios.get(`https://localhost:44316/api/Developer/${userId}`)
                 .then(res => {
                     setUserData(res.data.data);
-                    console.log(userData)
-                    console.log(userData.firstName)
-                    console.log(userData.lastName)
                 })
 
                 .catch(err => console.log(err))
@@ -35,8 +31,6 @@ const ProfilePage = () => {
             axios.get(`https://localhost:44316/api/Manager/${userId}`)
                 .then(res => {
                     setUserData(res.data.data);
-                    console.log(userData)
-                    console.log(userData.firstName)
                 })
                 .catch(err => console.log(err))
         }
@@ -64,9 +58,7 @@ const ProfilePage = () => {
                     <h6 className='d-flex justify-content-start form-label'>Description</h6>
                     <Form.Control as="textarea" rows={3} placeholder='Registration feature in ABC application' name="description" required />
                 </Form.Group>
-
-                
-                
+   
                 <Form.Group className='p-3'
                     controlId="exampleForm.ControlTextarea1">
                     <h6 className='d-flex justify-content-start form-label'>Select Priority</h6>
@@ -77,8 +69,6 @@ const ProfilePage = () => {
                         <option value="Low">Low</option>
                     </Form.Select>
                 </Form.Group>
-
-               
 
             </Form>
             <div className='d-flex justify-content-end'>
