@@ -4,10 +4,137 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
+  background-color: hsl(220, 100%, 98%) !important;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.main-container{
+  width: 100%;
+}
+
+.navbar-title{
+  margin-left: 1%;
+  margin-bottom: 0;
+  padding: 5px;
+  color: black;
+  font-weight: bold;
+}
+
+.card-class{
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.card-main{
+  height: 40%;
+  width: 100%;
+  text-align: center;
+  margin-top: 2%;
+  margin-bottom: 5%;
+}
+
+.card-text{
+  height: 40%;
+  width: 70%;
+  text-align: center;
+  margin : 2%;
+}
+
+article{
+  margin-top: 10px;
+}
+
+.toggle-button{
+  margin-right: 2px !important;
+  border: none;
+}
+
+.button-font-size{
+  font-size: 12.5px;
+}
+
+.card-image{
+  width: 35%;
+}
+
+.full-image{
+  width:100%;
+  margin-top: 3%;
+  height:300px !important;
+}
+
+.profile-img{
+  height: 45px;
+  margin-right: 2%;
+  margin-top: 5px;
+  margin-bottom: 0;
+  border-color: white;
+}
+
+.add-button {
+  color: white;
+  border-radius: 5cm;
+  margin-left: 2%;
+  margin-top: 10px;
+}
+
+.bg-grey{
+  background-color: #f3f3f3;
+}
+
+.step-size {
+ margin-left: -2%;
+}
+
+.const-margin {
+  align-items: center;
+  justify-content: end;
+  padding-right: 10px;
+}
+
+.container {
+  margin-top: 3%;
+  width: 70% !important;
+  border-radius: 8px 8px;
+  margin-bottom: 3%;
+  border: 2px;
+  border-color: rgb(197, 197, 197);
+  border-style: solid;
+  padding: 10px;
+}
+
+.input-item-details {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 6px;
+  font-size: 15px;
+}
+
+.input-row {
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-bar {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.search-bar {
+  width: 60%;
+  border-radius: 5cm;
+  margin-top: 10px;
+}
+
+.navbar {
+  justify-content: space-between;
+  border-bottom: 1px solid #f2f2f2;
+  background-color: #42b9be;
+  color: white;
 }
